@@ -10541,379 +10541,310 @@
                                 
                                 <p><img src="assets/images/product-updates-banner.png" alt="Product Updates banner"></p>
 <p>Our engineers are hard at work daily to make Workato better! View the latest updates to our platform below.</p>
-<h2 id="dec-23---jan-08">Dec 23 - Jan 08</h2>
-<h3 id="connector-enhancements">Connector enhancements</h3>
+<h3 id="platform-security-just-in-time-provisioning-now-supports-custom-roles">Platform security: Just-in-Time provisioning now supports custom roles</h3>
+<h6 id="jun-23-2019">Jun 23, 2019</h6>
+<h4 id="what-is-just-in-time-provisioning">What is Just-in-time provisioning</h4>
+<p>Just-in-Time provisioning enables customers to use a SAML assertion to create users in downstream  apps e.g. Workato on-demand when users log into the app for the very first time.
+This eliminates the need to manually provision user accounts in advance. For example, instead of manually creating a Workato account for a new employee customers can use Just-in-Time provisioning to dynamically create the Workato account when the new employee initially logs in using Single Sign On (SSO).   </p>
+<h4 id="for-whom">For Whom</h4>
 <ul>
-<li><p><strong>SAP On-premise connector:</strong></p>
-<p><strong>What&apos;s new:</strong> The new <a href="https://docs.workato.com/connectors/sap.html" target="_blank">SAP On-premise connector</a> that can connect to almost any SAP system on-premise or on a firewall protected server (including AWS, IBM, etc.). The supported SAP versions include SAP ERP ECC 6.0 and later, SAP CRM, SAP SRM, SAP SCM, and any other modules compatible with the NetWeaver platform.</p>
-<p>This first release supports asynchronous IDoc. Support for synchronous RFC will be coming soon.</p>
-</li>
-<li><p><strong>Google Sheets: Search rows limit increases to 50,000 rows</strong></p>
-<p>Search rows action now can return up to 50,000 rows of result, up from the previous limit of 200 rows.</p>
-</li>
-<li><p><strong>Salesforce: Batch operations</strong></p>
-<p>Apart from support for Salesforce bulk operations, Workato has included support for <a href="https://docs.workato.com/connectors/salesforce/batch-operations.html" target="_blank">Salesforce batch operations</a>, which make use of Salesforce&#x2019;s Collections API.</p>
-<p>These actions allow the creation and update of up to 2,000 records at a time. Users should make use of these operations when they are creating or updating small batches of Salesforce records, or if they wish to perform multiple operations without using Bulk API.</p>
-</li>
+<li>Available for all plans that include SSO &amp; Teams</li>
+<li>All current accounts using Teams with SAML based SSO (e.g. OKTA, One Login or other)</li>
 </ul>
+<h4 id="why-we-built-it">Why we built it</h4>
 <ul>
-<li><p><strong>ServiceNow: New trigger and action</strong></p>
-<p><strong>Search records using query:</strong> New Search records using query action allows the use of ServiceNow queries to filter the records you want. Supports up to 50,000 records retrieved per batch.</p>
-<p><strong>Scheduled record search trigger:</strong> New Scheduled record search trigger allows execution of query on a specified schedule. Query results will be returned in batches of records. Also supports up to 50,000 records retrieved per batch.</p>
-<p><strong>Increased search action limit:</strong> The actions <strong>Search records, Search records (User)</strong> and <strong>Search records using query</strong> can now be configured to return up to 50,000 records (up from 100).</p>
-</li>
-<li><p><strong>Okta: Scheduled trigger</strong></p>
-<p><strong>What&apos;s new:</strong> The new Okta Scheduled trigger allows a scheduled search instead of real-time exit.</p>
-</li>
+<li>Supporting custom roles for Just-in-time provisioning allows customers to enforce custom security policies for Workato</li>
+<li>The standard roles Admin, Analyst, and operator available with Just-in-time provisioning  don&apos;t suffice for customer&apos;s security policies</li>
 </ul>
-<h2 id="dec-11---dec-22">Dec 11 - Dec 22</h2>
-<h3 id="connector-enhancements">Connector enhancements</h3>
+<h4 id="how-it-works">How it works</h4>
 <ul>
-<li><p><strong>Google sheets: New actions</strong></p>
+<li>First, Workato admin creates a custom role e.g.mktg_ops for marketingOps that can only access, create, or modify objects (recipes, connections,OPA etc.) in the Marketing folder.</li>
+<li>Next, the authentication method is set to SAML based SSO (e.g. Okta, OneLogin) with SAML JIT enabled.</li>
+<li>The 3rd party identity provider (i.e. Okta, Onelogin) is configured to use the custom role value e.g. mktg_ops for the workato_role as one of the SAML attributes</li>
+<li>When a user logs into Workato using SAML based SSO for the first time, the identity provider (i.e. Okta,OneLogin) passes the custom role value e.g. mktg_ops for workato_role.</li>
+<li>The user&apos;s Workato account is then automatically provisioned with the custom role i.e. mktg_ops</li>
+</ul>
+<h4 id="why-it-is-useful">Why it is useful</h4>
 <ul>
-<li>New <code>Search rows</code> and <code>Update row</code> actions based on new Google Sheets API v4. Enable searching by simple field mappings and update rows in a sheet by row number.</li>
-<li><code>New/updated row</code> trigger now monitors up to 10,000 rows, increased from the previous limit of 1000 row.</li>
+<li><em>Reduced Administrative Costs:</em> Eliminates manual work to provision Workato accounts thus reducing cost of operations.</li>
+<li><em>Increased Security:</em> In addition to the access/security policies enforced by the identity provider, customers can now enforce custom security policies for Workato accounts.</li>
+<li><em>Faster Onboarding &amp; improved employee experience:</em> New hires have faster access to Workato accounts with the right access privileges.</li>
 </ul>
-</li>
-<li><p><strong>SQL Server: Automatic chunking for upsert action</strong></p>
-</li>
-<li><p><strong>Redshift: Escape special characters for connection</strong></p>
-</li>
-<li><p><strong>Anaplan: More output fields for import and export action</strong></p>
-</li>
-</ul>
-<h3 id="announcements">Announcements</h3>
-<p><strong>Wrike API migration</strong>
-On 19th December 2018, Workato&apos;s Wrike connectors have been updated to use Wrike&apos;s API v4.</p>
-<p>This update will disconnect all your existing Wrike connections. All recipes using Wrike connections will be stopped on 19th December 2018.</p>
-<p><strong>What you need to do:</strong></p>
-<p>Reconnect all Wrike connections in your account to use the updated connector. You can complete this action on or after December 19th, 2018.</p>
-<h2 id="nov-25---dec-10">Nov 25 - Dec 10</h2>
-<h3 id="platform-enhancements">Platform enhancements</h3>
+<h4 id="resources">Resources</h4>
 <ul>
-<li><p><strong>New Recipe UI</strong></p>
-<p><strong>What&apos;s new</strong>: The new recipe UI introduces a flowchart building interface that clearly displays the flow of logic through the entire recipe. Usability issues that have been raised have also been addressed in this design. Users should not only find this iteration of the recipe editor more user-friendly but also see new features that make their recipe building experience more efficient.</p>
-<p><strong>Learn more:</strong> Read more on Workato&apos;s New Era Update and upcoming features here: <a href="https://product.workato.com/2018/12/04/workato-new-era-update/" target="_blank">https://product.workato.com/2018/12/04/workato-new-era-update/</a></p>
-</li>
+<li><a href="https://docs.workato.com/user-accounts-and-teams/team-collaboration.html#saml-just-in-time-provisioning" target="_blank">Documentation</a></li>
 </ul>
-<h3 id="connector-enhancements">Connector enhancements</h3>
+<hr>
+<h3 id="platform-security-two-factor-authentication">Platform security: Two-factor authentication</h3>
+<h6 id="jun-12-2019">Jun 12, 2019</h6>
+<h4 id="what-is-two-factor-authentication-2fa">What is Two-Factor Authentication (2FA)</h4>
+<p>2FA is an extra layer of security used to make sure that people trying to gain access to an online account are who they say they are. First, a user will enter their username and a password. Then, instead of immediately gaining access, they will be required to provide another piece of information. This second factor could come from one of the following categories:</p>
+<ol>
+<li><strong>Something you know:</strong> This could be a personal identification number (PIN), a password, answers to &#x201C;secret questions&#x201D; or a specific keystroke pattern</li>
+<li><strong>Something you have:</strong> Typically, a user would have something in their possession, like a credit card, a smartphone, or a small hardware token</li>
+<li><strong>Something you are:</strong> This category is a little more advanced, and might include biometric pattern of a fingerprint, an iris scan, or a voice print</li>
+</ol>
+<h4 id="for-whom">For Whom</h4>
 <ul>
-<li><p><strong>New Google AI connectors</strong></p>
-<p><strong>What&apos;s new:</strong> New Google AI connectors have been added to the list of apps Workato supports. These new connectors enable a variety of content analysis capabilities that bring a new level of intelligence to recipes and automations.</p>
+<li>Available for all plans</li>
+<li>All existing and new accounts</li>
+</ul>
+<h4 id="how-it-works">How it works</h4>
+<p>Workato&apos;s two-factor authentication uses a software generated time-based, one-time passcode (also called TOTP, or soft-token)</p>
 <ul>
-<li><strong>Google Vision:</strong> Read text from images and scanned documents.
-Example use case: Read text from an uploaded driver&apos;s license and create a contact in Salesforce.</li>
-<li><strong>Google Speech-to-text:</strong> Allows conversion of a short speech-to-text transcript.</li>
-<li><strong>Google Text-to-speech:</strong> Allows conversion of text to synthetic voice audio.</li>
-<li><p><strong>Google Translate:</strong> Translate text between languages.</p>
-<p>Example use case: call recordings / voice messages from foreign customer --&gt; use Google Speech-to-text to transcribe to text --&gt; use Google Translate to translate to English --&gt; use Google Text-to-Speech to convert to audio, which customer support reps can listen to.</p>
-</li>
+<li>First, a user must download and install a free 2FA app (e.g. Google Authenticator, Authy, or other) on their smartphone or desktop</li>
+<li>Next, they will need to go to their Account settings section to enable two-factor authentication.</li>
+<li>When enabled, the user will be prompted to go through a couple of simple steps to activate 2FA for their account</li>
 </ul>
-</li>
-<li><p><strong>ServiceNow: Subdomain routing</strong></p>
-<p><strong>Context</strong>
-In development lifecycles, teams typically clone their sandbox instances for deployment into production. In the process, webhooks in the sandbox instance also get copied over into production. As a result, webhook events in production gets sent to the sandbox recipes, causing an error.</p>
-<p><strong>What&apos;s new: Subdomain routing for webhooks</strong>
-To fix this, we&#x2019;ve introduced subdomain routing. When an instance is cloned, the subdomain will change based on the instance it is in. This will ensure that webhooks in the cloned instance will be routed to the correct production recipe. To enable this behavior, simply stop and restart your ServiceNow recipes.</p>
-</li>
-</ul>
-<h2 id="nov-11---nov-25">Nov 11 - Nov 25</h2>
-<h3 id="connector-enhancements">Connector enhancements</h3>
+<h4 id="why-is-it-useful">Why is it useful</h4>
 <ul>
-<li><p><strong>HTTP: OAuth2 client credentials grant</strong></p>
-<p><strong>What&apos;s new:</strong> The HTTP connector now allows connections using the OAuth2 client credentials grant flow. Using the client credentials grant, the client can request an access token using only its client credentials. This is usually used when the client is requesting access to the protected resources under its control.</p>
-</li>
+<li>Customers can add a secondary layer of security to protect unauthorized and fraudulent access to their Workato account</li>
+<li>Similar to SSO, enterprise IT teams can now use 2FA to alleviate risks by enforcing security policies that require 2FA.</li>
+<li>Enables secure onboarding of collaborators to a team</li>
+<li>Eliminates the painful policy for periodic password reset</li>
 </ul>
-<h2 id="oct-25---nov-10-2018">Oct 25 - Nov 10 2018</h2>
-<h3 id="connector-enhancements">Connector enhancements</h3>
+<h4 id="resources">Resources</h4>
 <ul>
-<li><p><strong>Microsoft Dynamics CRM: Deleted object trigger</strong></p>
-<p><strong>What&apos;s new:</strong> The new trigger checks for deleted objects, e.g. deleted leads, every 5 minutes. Visit the object view page -&gt; Customize Entity -&gt; Enable Auditing to use this trigger.</p>
-</li>
-<li><p><strong>ADP: Support for custom actions</strong></p>
-<p><strong>What&apos;s new:</strong> The ADP adapter now allows custom actions. Select the &apos;Custom action&apos; option on the action dropdown to build one with a HTTP request.</p>
-</li>
-<li><p><strong>ADP: Unmask sensitive data</strong></p>
-<p><strong>What&apos;s new:</strong> All data is masked by default with ADP. The new toggle allows users to unmask sensitive information, which will be returned in the response.</p>
-</li>
-<li><p><strong>Netsuite: Custom fields for journal entries and line items</strong></p>
-<p><strong>What&apos;s new:</strong> Add custom fields that are returned in the output datatree in the &apos;Custom fields&apos; textbox. This is enabled on both journal entries and journal entry line items.</p>
-</li>
-<li><p><strong>Box: Support for OAuth scope selection &amp; new scopes</strong></p>
-<p><strong>What&apos;s new:</strong> When creating a Box connection, users can now select the OAuth scopes to request for. This enables limiting the connection&apos;s permissions to only the relevant ones for recipes connected to Box. We also added 2 new scopes: <code>Manage enterprise properties</code> and <code>Manage retention policies</code>. This allows buildings more powerful custom actions!</p>
-</li>
-<li><p><strong>Box: Upload large file</strong></p>
-<p><strong>What&apos;s new:</strong> <code>Upload file</code> action now allows large file of Gigabyte size. Previously it was limited at about 20Mb.</p>
-</li>
-<li><p><strong>Workbot: Message actions</strong></p>
-<p><strong>What&apos;s new:</strong>: Message actions on Slack allow users to perform actions on any existing Slack messages. The <a href="https://product.workato.com/2018/11/05/workbot-message-actions-2/" target="_blank">new message actions</a> capabilities on Workato allows users to make use of this new feature to build even more powerful Slack workflows.</p>
-</li>
+<li><a href="https://docs.workato.com/security/2fa.html" target="_blank">Documentation</a></li>
+<li><a href="https://www.dropbox.com/s/7dyi467bsl3aw7v/2FA%20Tutorial%20-%20V02.mp4?dl=0-" target="_blank">Video demo</a></li>
 </ul>
-<h2 id="oct-16---oct-25-2018">Oct 16 - Oct 25 2018</h2>
-<h3 id="platform-enhancements">Platform enhancements</h3>
+<hr>
+<h3 id="connector-update-zendesk-sunshine">Connector update: Zendesk Sunshine</h3>
+<h6 id="jun-03-2019">Jun 03, 2019</h6>
+<h4 id="introduction-to-zendesk-sunshine">Introduction to Zendesk Sunshine</h4>
 <ul>
-<li><p><strong>Audit log replication</strong></p>
-<p><strong>What&apos;s new:</strong> <a href="job-history-replication.html">Audit log replication</a> can now be done with a Sumo Logic HTTP Source. Admin events such as user login/logout, recipe start/stop, connections made/disconnected are enabled as events that can be logged.</p>
-</li>
+<li><a href="https://www.zendesk.com/platform/" target="_blank">Zendesk Sunshine</a> is an open, flexible CRM platform. Sunshine is built on AWS and lets customers seamlessly connect and understand all their customer data--wherever it lives.</li>
+<li>With Zendesk Sunshine, customers can build entirely custom applications that help go beyond customer support</li>
+<li>Zendesk Sunshine introduced Custom objects and relationships to store custom entities like products, subscriptions - that are unique to each customer/business.</li>
 </ul>
-<h3 id="connector-enhancements">Connector enhancements</h3>
+<h4 id="how-it-works">How it works</h4>
+<p>Workato is the first, and currently the only integration platform to support Zendesk Sunshine. The Zendesk connector has been updated to support actions for newly introduced Zendesk Sunshine objects and APIs:</p>
+<p><strong>Custom Objects:</strong></p>
 <ul>
-<li><p><strong>New adapter: Anaplan</strong></p>
-<p><strong>What&apos;s new:</strong> The Anaplan adapter is now released in beta. Anaplan is a cloud-based business planning and performance management platform, used by many enterprises. With this connector, you can download/upload files and import/export data in Anaplan.</p>
-</li>
-<li><p><strong>Salesforce: Search records in bulk using SOQL (Batch)</strong></p>
-<p><strong>What&apos;s new:</strong> Related objects can now be used in searches with the Search records in bulk using SOQL (Batch) action. Simply select the related join objects wanted. Then, select the fields you&apos;re interested in using in the recipe via the Fields input field.</p>
-</li>
+<li>Create custom object record</li>
+<li>Update custom object record</li>
+<li>Get custom object record by ID</li>
+<li>Get list of custom object records by external ID</li>
+<li>Delete custom object record</li>
 </ul>
-<h2 id="oct-06---oct-15-2018">Oct 06 - Oct 15 2018</h2>
-<h3 id="connector-enhancements">Connector enhancements</h3>
+<p><strong>Custom relationship</strong></p>
 <ul>
-<li><p><strong>Oracle DB: Execute stored procedure action</strong></p>
-<p><strong>What&apos;s new:</strong> The Oracle <a href="connectors/oracle/stored-procedure.html">Execute stored procedure</a> action now supports stored procedures nested in packages.</p>
-</li>
-<li><p><strong>Redshift: Batch actions</strong></p>
-<p><strong>What&apos;s new:</strong> Insert and Upsert row actions in the Redshift connector will now allow <a href="features/batch-processing.html">increased speed and data throughput</a> when moving a large number of records to Redshift.</p>
-</li>
-<li><p><strong>Active Directory: Support for auxiliary class attributes</strong></p>
-<p><strong>What&apos;s new:</strong> In Active Directory, some object classes may have statically linked auxiliary classes with their own attributes. With this enhancement, Workato supports all auxiliary class attributes and object class attributes.</p>
-</li>
-<li><p><strong>Salesforce: Support for OAuth scope selection</strong></p>
-<p><strong>What&apos;s new:</strong> When creating a Salesforce connection, you can now select the OAuth scopes to request for. This enables you to limit your connection&apos;s permissions to only relevant permissions for your integrations.</p>
-</li>
+<li>Create relationship record</li>
+<li>Get related records</li>
+<li>Delete Relationship Record</li>
 </ul>
-<h2 id="sept-25---oct-05-2018">Sept 25 - Oct 05 2018</h2>
-<p><strong>Find more details on this month&apos;s updates in our <a href="https://product.workato.com/2018/10/04/october-2018-product-release/" target="_blank">blog post</a>.</strong></p>
-<h3 id="platform-enhancements">Platform enhancements</h3>
+<h4 id="resources">Resources:</h4>
 <ul>
-<li><p><strong>Data pill enhancement</strong></p>
-<p><strong>Context:</strong> We&apos;ve greatly improved visibility on data pills when they are mapped into fields so that building and reviewing recipes can be done in a glance.</p>
-<p><strong>What&apos;s new:</strong> All data pills have been revamped to include the application logo and step it comes from.</p>
-</li>
-<li><p><strong>Added delete functionality for lookup tables</strong></p>
-<p><strong>What&apos;s new:</strong> We have added the ability to delete <strong>all data from lookup tables</strong> without the need to delete the table entirely. Access this by clicking on the <code>...</code> menu icon on the last column of your lookup table.</p>
-</li>
-<li><p><strong>Added delete functionality for custom adapters_schema</strong></p>
-<p><strong>What&apos;s new:</strong> We have also added the ability to <strong>remove custom (SDK) adapters</strong>. Users can do so from their individual <a href="https://www.workato.com/custom_adapters" target="_blank">custom adapters</a> pages.</p>
-</li>
+<li><a href="https://www.workato.com/integrations/zendesk" target="_blank">Overview</a></li>
 </ul>
-<h3 id="connector-enhancements">Connector enhancements</h3>
+<hr>
+<h3 id="webhooks-wizard">Webhooks wizard</h3>
+<h6 id="jun-03-2019">Jun 03, 2019</h6>
+<h4 id="background-why-webhooks">Background: Why webhooks?</h4>
+<p>Webhooks is part of a larger platform offering: custom connectivity. While we have a strong list of triggers out of the box, user data shows that 44% of our users require custom connectivity to some extent. It is typically used to connect to proprietary or legacy apps.</p>
+<p>Users use need webhooks for time-sensitive use cases. These use cases require real-time triggering of workflows like requesting an outbound call to a lead downloading the company ebook.</p>
+<h4 id="for-whom">For Whom</h4>
 <ul>
-<li><p><strong>Quick Base: Bulk import action</strong></p>
-<p><strong>What&apos;s new:</strong> We released a new <a href="https://product.workato.com/2018/09/28/announcing-our-quick-base-bulk-import-action/" target="_blank">Quick Base bulk import action using CSV file</a>. Users can now easily import a large amount of data into Quick Base with this addition. Documentation is available on: <a href="connectors/quick-base/action-import-csv.html">Quick Base action: Create and update records in bulk from CSV file</a></p>
-</li>
-<li><p><strong>Microsoft Dynamics CRM: Picklist lookup support</strong></p>
-<p>  <strong>Context:</strong> It can be hard to retrieve the lookup values of picklists in Microsoft Dynamics CRM. In the API response, typically only the internal values of the picklist selection are returned.</p>
-<p>  <strong>What&apos;s new:</strong> The <a href="https://product.workato.com/2018/09/26/2053-picklist-lookups-for-dynamics-crm/" target="_blank">new feature</a> in our Microsoft Dynamics CRM connector now gives you both the picklist option labels as well as the internal values for your selected picklist option. These fields show up as additional fields for you to use in the datatree.</p>
-</li>
-<li><p><strong>Wrike: New/updated task trigger can now filter by task status</strong></p>
-<p><strong>What&apos;s new:</strong> You can now filter new/updated task trigger events by task status. This allows you to trigger recipe actions only on specific task statuses.</p>
-</li>
-<li><p><strong>Wrike: Secondary connector</strong></p>
-<p><strong>What&apos;s new:</strong> You can now connect a secondary Wrike connector in your recipes. This makes it possible to sync folders, tasks and projects across 2 different Wrike accounts.</p>
-</li>
-<li><p><strong>Wrike: Seach folders/projects action can now filter by custom field</strong></p>
-<p><strong>What&apos;s new:</strong> You can now filter search results of a <b>Search folders/projects</b> action by using custom fields. To use this filter, add the optional field &apos;Custom field list&apos; in a <b>Search folders/projects</b> action.</p>
-</li>
+<li>Users looking to build recipes with real-time triggers</li>
+<li>Available to all plans</li>
 </ul>
-<h2 id="sept-4---sept-24-2018">Sept 4 - Sept 24 2018</h2>
-<h3 id="platform-enhancements">Platform enhancements</h3>
+<h4 id="why-we-built-it">Why we built it</h4>
+<p>Webhooks has been a key part of many customer use cases. In the last year alone, Workato saw more than 2.5x increase in the number of recipes using webhook triggers to enable real-time automation. This trend is expected to continue increasing exponentially. We want to make the user experience for this popular trigger the best out there.</p>
+<h4 id="how-it-works">How it works</h4>
+<p>This wizard takes the user through a guided flow to test and verify a webhook trigger. We take the information from this test to configure the metadata automatically.</p>
+<h4 id="what-problems-does-it-solve-for-you">What problems does it solve for you</h4>
+<p>Unlike other products in the iPaaS space, building a webhooks trigger can now take less than 5 mins (down from 15-30 minutes). Often, users will need to switch back and forth between the recipe and their app.
+Additionally, users need to learn/understand the webhooks metadata - what the webhook schema looks like, which HTTP method and data type to expect.
+Lastly, it is difficult to verify that a webhook trigger is configured correctly. Users needed to do end-to-end tests with active recipes.</p>
+<ol>
+<li>Simplify UX - users can verify if the webhook trigger works immediately.</li>
+<li>Reduce skill barrier and human error - wizard detects key information  and uses it to configure the trigger automatically.</li>
+</ol>
+<h4 id="resources">Resources</h4>
 <ul>
-<li><p><strong>Group data mapping</strong></p>
-<p><strong>Context:</strong> In a large enterprise database, there can be hundreds of fields in every table. When there are a daunting number of fields to map or if many of your field labels match with the name of pills, it can be a chore to do them one-by-one.</p>
-<p><strong>What&apos;s new:</strong> Map fields automatically with the new group data mapping tool in every action. Click on the icon next to the &apos;comment&apos;, &apos;clone&apos; and &apos;delete&apos; icons on the right hand side on every recipe line to bring up the group mapping wizard. Simply choose the fields to map and the data source to get started.</p>
-<p>Read the documentation on <a href="recipes/group-data-mapping.html">group data mapping</a> to learn more.</p>
-</li>
-<li><p><strong>New control for date/time picker</strong></p>
-<p><strong>What&apos;s new:</strong> A new grid icon is available on the right of all date/time fields. Clicking on this icon will bring up a calendar date picker followed by a drop-down list of times. Use this new function to quickly configure dates and times. After selecting your chosen date or time, you may still edit this by typing in the field directly.</p>
-<p>For our more experienced users, please note that clicking on the calendar icon on the left of the field will no longer work.</p>
-</li>
+<li><a href="https://docs.workato.com/connectors/workato-webhooks.html" target="_blank">Documentation</a></li>
+<li><a href="https://docs.workato.com/connectors/workato-webhooks/common-errors.html" target="_blank">Common errors and how to resolve them</a></li>
 </ul>
-<h3 id="connector-enhancements">Connector enhancements</h3>
+<hr>
+<h3 id="new-connector-airtable">New connector: Airtable</h3>
+<h6 id="may-26-2019">May 26, 2019</h6>
+<h4 id="for-whom">For Whom</h4>
 <ul>
-<li><p><strong>Workday: Trigger change</strong></p>
-<p><strong>Context:</strong> Previously, large worker objects in Workday caused jobs to timeout.</p>
-<p><strong>What&apos;s new:</strong> A new option under <em>Advanced configuration</em> called &apos;Return reference only&apos; available in Workday triggers allows the job to return only references and transaction logs, minimising the trigger data size to prevent timeouts</p>
-</li>
-<li><p><strong>HTTP connector: Secondary connector</strong></p>
-<p><strong>What&apos;s new:</strong> Previously, only 1 HTTP connection was allowed per recipe. The new secondary connector is useful when users need to connect to multiple REST endpoints. To use the HTTP secondary connector, access the adapter dropdown menu and click on the &apos;HTTP secondary&apos; option.  </p>
-</li>
-<li><p><strong>Salesforce new action: Salesforce bulk query using SOQL</strong></p>
-<p><strong>What&apos;s new:</strong> The new action allows a bulk search for records in Salesforce with a SOQL query. Learn more about <a href="https://support.workato.com/support/solutions/articles/1000236426-salesforce-object-query-language-soql-basic-syntax-and-common-search-terms" target="_blank">using SOQL queries</a> and about <a href="https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm" target="_blank">Salesforce bulk API</a>.</p>
-</li>
+<li>Customers looking to connect Airtable to enterprise business system apps - Salesforce, ServiceNow, Workday, Netsuite, ERPs, Databases, and more</li>
+<li>Customers looking to automate employee/customer/partner onboarding campaign/event/project management workflows, and more</li>
+<li>Available for Business and above plans</li>
 </ul>
-<h2 id="aug-17---sept-3-2018">Aug 17 - Sept 3 2018</h2>
-<p><strong>Find more details on August&apos;s updates in our <a href="https://product.workato.com/2018/09/06/sept-2018-product-release/" target="_blank">blog post</a>.</strong></p>
-<p>Note: We have upgraded our services to TLS 1.1 or higher as of August 21, 2018. Please view this article for more details: <a href="https://product.workato.com/2018/08/07/stronger-security-with-tls-1-1-update/" target="_blank">Stronger security with TLS 1.1 update</a>.</p>
-<h3 id="platform-enhancements">Platform enhancements</h3>
+<h4 id="how-it-works">How it works</h4>
+<p>The Airtable Connector provides:</p>
 <ul>
-<li><p><strong>Compatible input/output schemas</strong></p>
-<p><strong>Context:</strong> Previously, all mapped fields in later recipe steps are cleared when the user changes the trigger or actions.</p>
-<p><strong>What&apos;s new:</strong> All actions and triggers now have compatible input and output schemas. The user can change a trigger or action and all mappings will remain valid if the new trigger has the same fields/pills.</p>
-</li>
-<li><p><strong>Recipe IQ: Powering intelligent recipe building</strong></p>
-<p><strong>Context:</strong> The Workato platform uses sophisticated machine learning algorithms based on billions of integration events and hundreds of thousands of integration use cases to assist users in building effective integrations and automations.</p>
-<p><strong>What&apos;s new:</strong> During recipe building, users may notice the <code>Powered by RecipeIQ</code> tag, which indicates that our AI algorithms are intelligently suggesting the best actions, data pills or fields for use.</p>
-</li>
-<li><p><strong>Job report: Timing tab</strong></p>
-<p><strong>What&apos;s new:</strong> The timing tab for every step in a recipe has been exposed. Users can find it next to the &apos;input&apos; and &apos;output&apos; tabs in the individual job reports. This tab shows the time taken for every action and can be used in debugging recipes.</p>
-</li>
+<li>Polling Triggers -  Access to new records in base, table, and view</li>
+<li>Actions - To create/update records, search records</li>
+<li>Custom Actions - To extend the functionality of the connector</li>
+<li>Time Machine- Access to current and historical data</li>
 </ul>
-<h3 id="connector-enhancements">Connector enhancements</h3>
+<h4 id="why-it-is-useful">Why it is useful</h4>
 <ul>
-<li><p><strong>New connector: On-Prem Command-line Scripts</strong></p>
-<p><strong>What&apos;s new:</strong> Workato&apos;s <code>On-prem command-line scripts</code> connector allows you to run whitelisted command line scripts in your private network with an on-premises agent. Find out how to set a profile up on the <a href="https://docs.workato.com/on-prem/profile.html#command-line-scripts-profile" target="_blank">on-premises profile documentation</a>.</p>
-</li>
-<li><p><strong>HTTP &amp; Custom HTTP connectors</strong></p>
-<p><strong>Context:</strong> Previously, users had to parse the HTTP response as text, then use the JSON parser as the next action to parse out the response.</p>
-<p><strong>What&apos;s new:</strong> The HTTP adapter now supports JSON arrays and objects.</p>
-</li>
-<li><p><strong>On-premises files connector major update</strong></p>
-<p><strong>What&apos;s new:</strong>  Several new triggers and actions have been added to the connector, and the old versions of those triggers and actions have been deprecated. This update will not affect your current running recipes. We will continue to support the deprecated triggers and actions, and your current recipes will keep running as normal.</p>
-<p>Please read the following article for more information: <a href="https://support.workato.com/support/solutions/articles/1000267630-on-prem-file-connector-major-update-sep-2018" target="_blank">On-prem file connector major update - Sep 2018</a>.</p>
-</li>
-<li><p><strong>Jira &amp; Jira Service Desk (cloud-only)</strong></p>
-<p><strong>What&apos;s new:</strong> Added support for basic authentication with API tokens, in anticipation for the upcoming <a href="https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/" target="_blank">deprecation of basic authentication with password</a> by Atlassian. Read about this in <a href="https://support.workato.com/support/solutions/articles/1000267662-jira-cloud-only-jira-service-desk-deprecation-of-basic-authentication-with-password" target="_blank">our recent announcement</a>.</p>
-</li>
-<li><p><strong>Bill.com connector</strong></p>
-<p><strong>What&apos;s new:</strong> Added support for new/updated vendor trigger.</p>
-</li>
+<li>Addresses key LOB automations - Enables marketing, sales, finance, HR, and other business teams to create automations connecting enterprise apps</li>
+<li>Connects business and technology teams - HR,Marketing, Sales, Finance teams can easily create and track requests for IT and engineering teams</li>
 </ul>
-<h2 id="aug-4---aug-16-2018">Aug 4 - Aug 16 2018</h2>
-<h3 id="connector-enhancements">Connector enhancements</h3>
+<h4 id="resources">Resources</h4>
 <ul>
-<li>Database connectors (Oracle, Redshift, MySQL, SQL Server, PostgreSQL) changes to required fields pick lists in triggers. Read the article <a href="https://support.workato.com/support/solutions/articles/1000267334-draft-update-to-database-connectors-trigger-pick-lists" target="_blank">here</a> for more information.</li>
-<li>PostgreSQL: Select rows using custom SQL<ul>
-<li>This action lets you select rows based on a custom SQL query. Rows that are returned from the query will be returned as the output of this action. Read the documentation <a href="connectors/postgresql/select.html#select-rows-using-custom-sql">here</a>.</li>
+<li><a href="https://www.workato.com/integrations/airtable" target="_blank">Overview</a></li>
 </ul>
-</li>
-<li>Google Sheets: 150 new 2-min recipes has been published and are available for use. Find them <a href="https://www.workato.com/recipes/19394-add-new-payments-in-quickbooks-to-google-sheets" target="_blank">here</a>.</li>
-<li>Workbot enhancements:<ul>
-<li>Custom help (on the connection level). You can now define what users see when they DM &#x2018;help&#x2019; to Workbot.</li>
-<li>New post command reply &amp; post message enhancements<ul>
-<li>pretext</li>
-<li>author_name</li>
-<li>author_link</li>
-<li>author_icon</li>
-<li>footer</li>
-<li>footer_icon</li>
-<li>thumb_url</li>
-</ul>
-</li>
-<li>Allow custom message color by supplying hex code</li>
-<li>Allow message menus to be displayed before buttons</li>
-<li>Original_message added to trigger output</li>
-<li>Enhancements to post command reply only<ul>
-<li>Replace original</li>
-<li>Delete original</li>
-</ul>
-</li>
-<li>New custom HTTP action for Workbot</li>
-</ul>
-</li>
-</ul>
-<h2 id="july-19---aug-3-2018">July 19 - Aug 3 2018</h2>
-<p><strong>Find more details on July&apos;s updates in our <a href="https://product.workato.com/2018/08/02/august-2018-product-release/" target="_blank">blog post</a>.</strong></p>
-<h3 id="platform-enhancements">Platform enhancements</h3>
+<hr>
+<h3 id="new-connector-coupa">New connector: Coupa</h3>
+<h6 id="may-19-2019">May 19, 2019</h6>
+<h4 id="for-whom">For Whom</h4>
 <ul>
-<li>Recipe lifecycle management: Added support for message templates  </li>
+<li>Customers looking to connect Coupa to ERP, invoicing, order management, contract management, travel &amp; expense management, CRM, Identity managment, enterprise content sharing appps, and more</li>
+<li>Customers looking to automate procure-to-pay, record-to-reports, expense management, procurement approval, and other processes</li>
+<li>Available for Business and above plans</li>
 </ul>
-<h3 id="connector-enhancements">Connector enhancements</h3>
+<h4 id="how-it-works">How it works</h4>
+<p>The Coupa Connector provides:</p>
 <ul>
-<li>Shopify: Inventory API changes. <strong>These changes will result in your recipes breaking if you are using Shopify connector actions</strong>. Please view this <a href="https://support.workato.com/support/solutions/articles/1000266904-shopify-connector-inventory-api-breaking-changes" target="_blank">document</a> for more information.  </li>
-<li>New connector: <a href="https://docs.workato.com/connectors/jdbc.html" target="_blank">JDBC</a> (in beta)</li>
-<li>Workbot for Slack: Post Message &amp; Post Command Reply actions &#x2014; added support for multiple attachments.</li>
-<li>Eventbrite: Now supports Eventbrite Music</li>
-<li>Salesforce: New get document by ID action</li>
-<li>Workday: Enhancements to fields with attributes and repeated fields. View this <a href="https://docs.workato.com/connectors/workday/call_operation.html" target="_blank">documentation</a> to learn more.</li>
+<li>Polling Triggers - For major standard objects e.g. Account, Address, Contract, Expense Report, Lookup Value, Inventory Transaction, Supplier, and more</li>
+<li>Actions - To create/update standard objects, close purchase order, Get Object id, Search objects, and more</li>
+<li>Custom Actions - To extend the functionality of the connector</li>
+<li>Custom Fields- Access to standard and custom fields for various objects</li>
 </ul>
-<h2 id="july-06---july-18-2018">July 06 - July 18 2018</h2>
-<h3 id="platform-enhancements">Platform enhancements</h3>
+<h4 id="why-it-is-useful">Why it is useful</h4>
 <ul>
-<li>Recipe lifecycle management: Added support for shared schema import/export</li>
-<li>New recipe editor toolbar: The new toolbar allows you to easily access the save and start buttons on screen when building and editing your recipes</li>
-<li>Files by Workato: New Transform image file action, allows the conversion of image files to .jpg and .png files and image resizing</li>
+<li>Addresses key finance automations - Enables customers to automate key financial processes e.g. procure-to-pay, record-to-report, spend and expense management, source-to-pay, and more</li>
+<li>Increases value and usage of Coupa - Connects Coupa to all corners of the business i.e. finance, IT, HR, Marketing, Sales, Support</li>
 </ul>
-<h3 id="connector-enhancements">Connector enhancements</h3>
-<h4 id="http-connector">HTTP connector</h4>
+<h4 id="example-recipes">Example recipes</h4>
 <ul>
-<li><a href="developing-connectors/http-v2.html">New HTTP action wizard guide</a></li>
+<li><a href="https://product.workato.com/2019/05/10/automating-procure-to-pay-by-connecting-coupa-to-netsuite/" target="_blank">Manage Procure To Pay integrations between Coupa and your ERP</a></li>
+<li><a href="https://product.workato.com/2019/05/10/coupa-integrations-with-netsuite-powered-by-workato-expense-management/" target="_blank">Manage Procure To Order integrations between Coupa and your ERP</a></li>
+<li><a href="https://product.workato.com/2019/05/10/coupa-integrations-with-netsuite-powered-by-workato-expense-management/" target="_blank">Manage Expense Management integrations between Coupa and your ERP</a></li>
+<li><a href="https://www.workato.com/recipes/929986-sync-supplier-data-from-netsuite-to-coupa" target="_blank">Sync Supplier data from your ERP to Coupa</a></li>
+<li><a href="https://www.workato.com/recipes/930010-invoice-approval-in-coupa-updates-netsuite" target="_blank">Sync invoice data from Coupa to your ERP</a></li>
+<li><a href="https://www.workato.com/recipes/930615-new-updated-purchase-order-in-coupa-creates-updates-purchase-order-in-netsuite" target="_blank">Sync purchase order data from Coupa to your ERP</a></li>
+<li><a href="https://www.workato.com/recipes/930619-vendor-payment-in-netsuite-closes-purchase-order-in-coupa" target="_blank">Close purchase orders in Coupa</a></li>
+<li><a href="https://www.workato.com/recipes/930715-new-expense-report-in-expensify-creates-new-expense-report-in-coupa#settings" target="_blank">Sync expense reports data in Expensify and Coupa</a></li>
 </ul>
-<h2 id="june-22---july-05-2018">June 22 - July 05 2018</h2>
-<p><strong>Find more details on June&apos;s updates in our <a href="https://product.workato.com/2018/07/05/july-2018-product-release/" target="_blank">blog post</a>.</strong></p>
-<h3 id="platform-enhancements">Platform enhancements</h3>
+<h4 id="resources">Resources</h4>
 <ul>
-<li>Static and dynamic list input modes</li>
-<li>Recipe lifecycle management: Imported connections will appear in the same connection folder</li>
-<li>Transliterate formula added: Replaces non-ASCII characters with an ASCII approximation, e.g. <code>&quot;Chlo&#xE9;&quot;.transliterate</code> becomes <code>&quot;Chloe&quot;</code></li>
+<li><a href="https://www.workato.com/integrations/coupa" target="_blank">Overview</a></li>
+<li><a href="https://product.workato.com/2019/05/10/extending-coupa-with-workato/" target="_blank">Product Blog</a>  </li>
+<li><a href="https://www.coupa.com/coupalink/middleware/workato/" target="_blank">Coupa Link</a></li>
 </ul>
-<h3 id="connector-enhancements">Connector enhancements</h3>
+<hr>
+<h3 id="api-platform-with-jwt-authentication">API Platform with JWT authentication</h3>
+<h6 id="may-12-2019">May 12, 2019</h6>
+<h4 id="for-whom">For Whom</h4>
 <ul>
-<li>New HTTP wizard to guide user in building an HTTP action</li>
+<li>Customers looking to expose internal business processes, and data to be accessed from portals, widgets in SaaS apps, and other internal service</li>
+<li>Customers looking to expose business processes, and data for external partners to consume</li>
+<li>Add-on for Business Plus and above plans</li>
 </ul>
-<h4 id="netsuite">Netsuite</h4>
+<h4 id="why-we-built-it">Why we built it</h4>
 <ul>
-<li><code>ItemGroup</code> standard object now available in Search action and trigger</li>
+<li>Customers expect API management capabilities when purchasing iPaaS</li>
+<li>Digital businesses need APIs for agility to improve time-to-market, reduce cost of change, and solve a diverse set of use cases</li>
+<li>Increase the publishing and consumption of APIs by reducing the skill and cost barriers</li>
 </ul>
-<h4 id="workday">Workday</h4>
+<h4 id="how-it-works">How it works</h4>
+<p>API platform provides the following:</p>
 <ul>
-<li>Added support for special characters</li>
+<li><em>RESTful API Endpoints</em> - expose callable recipes as RESTFUL endpoints</li>
+<li><em>API access control</em> - JWT and auth token based authentication; IP whitelisting</li>
+<li><em>API Collections &amp; Policies</em> - Purpose specific API groups; rate and usage metering for QoS</li>
+<li><em>Dashboard &amp; Activity</em> - Real-time monitoring of usage and health</li>
 </ul>
-<h2 id="june-08---june-21-2018">June 08 - June 21 2018</h2>
-<h3 id="platform-enhancements">Platform enhancements</h3>
+<h4 id="why-is-it-useful">Why is it useful</h4>
 <ul>
-<li>New recipe creation wizard</li>
+<li><em>Create New Experiences</em> - Access to data &amp; services through mobile apps, portals, widgets, bots, and other interfaces</li>
+<li><em>Improve security and compliance</em> - Share data without direct access to underlying apps and systems</li>
+<li><em>Increase reuse to reduce cost</em> - Create reusable components that can be shared to reduce dev costs</li>
 </ul>
-<h3 id="connector-enhancements">Connector enhancements</h3>
-<h4 id="propel">Propel</h4>
-<p>Added Propel as a new connector.</p>
-<p><strong>Triggers</strong></p>
+<h4 id="competitive-advantages">Competitive Advantages</h4>
 <ul>
-<li>Object created</li>
-<li>Daily object review</li>
-<li>Object created/updated</li>
+<li><em>Reduced skill barrier</em>  -  business analysts, App admins, and non-developer personas can publish &amp; consume</li>
+<li><em>Reduced costs</em> - lower development &amp; maintenance costs; lower operations cost; zero DevOps</li>
+<li><em>Faster time to value</em> - faster development cycles; rapid iterations for adapting to changing requirements</li>
+<li><em>Rapid adoption at scale</em> - enables more roles in the enterprise to participate in the digital transformation</li>
 </ul>
-<p><strong>Actions</strong></p>
+<h4 id="resources">Resources</h4>
 <ul>
-<li>Custom action</li>
-<li>Create object</li>
-<li>Get related objects</li>
-<li>Search objects</li>
-<li>Update object</li>
+<li><a href="https://resources.workato.com/product-hour/api-management-with-workato-jan-17/" target="_blank">Product Hour</a></li>
+<li><a href="https://product.workato.com/2019/02/08/feb-2019-product-release-api-platform-update/" target="_blank">Product Blog post</a></li>
+<li><a href="https://docs.workato.com/api-mgmt/access-tokens.html" target="_blank">Documentation</a></li>
 </ul>
-<h4 id="netsuite">Netsuite</h4>
+<hr>
+<h3 id="automation-dashboard-and-job-history-search">Automation Dashboard And Job History Search</h3>
+<h6 id="may-05-2019">May 05, 2019</h6>
+<h4 id="for-whom">For Whom</h4>
 <ul>
-<li>Added the ability to search custom records by custom fields</li>
-<li>Added support for message object in New Classification trigger</li>
+<li>Customers looking to monitor mission and business critical automations</li>
+<li>Operators/Admins responsible for triaging/resolving issues quickly for SLA</li>
+<li>All plans</li>
 </ul>
-<h4 id="pgp">PGP</h4>
+<h4 id="challenges-addressed">Challenges Addressed</h4>
 <ul>
-<li>New action: Decrypt file with PGP</li>
+<li>Elimination of manual steps to analyze and discover issues across all recipes in an account</li>
+<li>Lack of visibility into historical trends in jobs processed/failed to analyze health of all recipes in an account.</li>
+<li>Extremely time consuming manual process of reviewing log for each job run for auditing and triaging issues. Unsustainable for recipes with 100s of jobs.</li>
 </ul>
-<h4 id="okta">Okta</h4>
+<h4 id="how-it-works">How it works</h4>
+<p>Users have instant visibility into the health of recipes, connections, OPA, jobs from a single view- Automation Dashboard.</p>
 <ul>
-<li>New events action has been enhanced to allow &quot;others&quot; option in the Event type dropdown. This allows users to enter a specific Event name.</li>
+<li>Real-time visualization of data pertaining to recipes, connections, etc.</li>
+<li>Target issues that matter with filters to drill down to details of specific time periods, folders, recipe status</li>
+<li>Manage and fix errors that need immediate attention</li>
+<li>Google like search using keywords across all job history data</li>
 </ul>
-<h4 id="workday">Workday</h4>
+<h4 id="why-is-it-useful">Why is it useful</h4>
 <ul>
-<li>The call operation action now includes &apos;get integration systems&apos; as an operation.</li>
+<li>Faster discovery and resolution of issues increases uptime &amp; improves SLA</li>
+<li>Significant savings in time and effort in monitoring all recipes for an account</li>
+<li>Unprecedented access to audit, troubleshoot and resolve issues to improve data quality &amp; integrity</li>
 </ul>
-<h2 id="june-01---june-07-2018">June 01 - June 07 2018</h2>
-<h3 id="connector-enhancements">Connector enhancements</h3>
-<h4 id="netsuite">Netsuite</h4>
+<h4 id="competitive-advantage">Competitive Advantage</h4>
+<p>For other iPaaS vendors:</p>
 <ul>
-<li>New Action: Delete Record</li>
+<li>Dashboards provide operational insights using technical data vis-a-vis CPU, memory and I/O utilization &amp; performance, and aggregated job run stats - requiring users to manually analyze and discover issues.</li>
+<li>Accessing and querying job history data/logs when available would require custom tooling or 3rd party tools.</li>
 </ul>
-<h4 id="servicenow">ServiceNow</h4>
+<h4 id="resources">Resources</h4>
 <ul>
-<li>Deprecated Actions: Get incident details by ID, Get user details by ID, Assign user to incident. Please use the new actions: Search records or Update records if you need these actions.</li>
+<li><a href="https://www.youtube.com/watch?v=L3eY4EPCgLY" target="_blank">Demo</a></li>
+<li><a href="https://resources.workato.com/product-hour/autonomous-operations-mar-28/" target="_blank">Product Hour</a></li>
+<li><a href="https://product.workato.com/2019/04/09/apr-2019-product-release/" target="_blank">Product Blog post</a></li>
 </ul>
-<h4 id="marketo">Marketo</h4>
+<hr>
+<h3 id="recipe-lifecycle-management-automation-with-manifests-and-apis">Recipe Lifecycle Management automation with Manifests and APIs</h3>
+<h6 id="apr-28-2019">Apr 28, 2019</h6>
+<h4 id="for-whom">For Whom</h4>
 <ul>
-<li>Attributes array has been added to the output for lead batch activity trigger</li>
+<li>Enterprise Customers</li>
+<li>Multiple Environments/Accounts (Dev/Test/Production)</li>
+<li>Available for Business Plus and above plans</li>
 </ul>
-<h4 id="replicon">Replicon</h4>
+<h4 id="challenges-addressed">Challenges Addressed</h4>
 <ul>
-<li>New Action: Get Eligible Project leaders from Replicon</li>
+<li>Automation of delivery cycles - from build/change, to testing to deployment to reduce error rates and increase speed of delivery for business</li>
+<li>Elimination of manual steps to create and move packages (recipes &amp; dependencies) across environments
+Support integration with external version control software and  deployment automation</li>
+</ul>
+<h4 id="how-it-works">How it works</h4>
+<p>Users can create manifests- a record of all assets (recipes &amp; dependencies) that is  included in the package.</p>
+<ul>
+<li>Manifests eliminate manual selection to ensure consistency in export of recipes &amp; dependencies</li>
+<li>Automated tracking and auditability of package changes to reduce errors</li>
+<li>Additionally, APIs available to export and import packages help with deployment automation</li>
+</ul>
+<h4 id="why-is-it-useful">Why is it useful</h4>
+<ul>
+<li>Faster recipe deployment cycles with less effort</li>
+<li>Reduced errors when deploying mission critical automations in production</li>
+<li>Improved visibility and consistency across the development lifecycle</li>
+</ul>
+<h4 id="resources">Resources</h4>
+<ul>
+<li><a href="https://docs.workato.com/recipe-development-lifecycle.html" target="_blank">Docs</a></li>
+<li><a href="https://docs.workato.com/recipe-development-lifecycle.html" target="_blank">Best Practices</a></li>
 </ul>
 
                                 
@@ -10997,7 +10928,7 @@ To fix this, we&#x2019;ve introduced subdomain routing. When an instance is clon
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Product Updates","date":"2018-06-05T21:45:00.000Z","level":"1.26","depth":1,"next":{"title":"Contact us","level":"1.27","depth":1,"path":"contact-us.md","ref":"contact-us.md","articles":[]},"previous":{"title":"IP whitelists","level":"1.25.1","depth":2,"anchor":"#ip_whitelists","path":"security.md","ref":"security.md#ip_whitelists","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"product-updates.md","mtime":"2019-06-28T08:15:45.576Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-06-28T08:18:02.318Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Product Updates","date":"2018-06-05T21:45:00.000Z","level":"1.26","depth":1,"next":{"title":"Contact us","level":"1.27","depth":1,"path":"contact-us.md","ref":"contact-us.md","articles":[]},"previous":{"title":"IP whitelists","level":"1.25.1","depth":2,"anchor":"#ip_whitelists","path":"security.md","ref":"security.md#ip_whitelists","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"product-updates.md","mtime":"2019-06-28T15:36:19.003Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-06-28T15:38:55.303Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

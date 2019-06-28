@@ -9,6 +9,67 @@ date: 2018-06-05 21:45:00 Z
 Our engineers are hard at work daily to make Workato better! View the latest updates to our platform below.
 
 
+## Dec 23 - Jan 08
+
+### Connector enhancements
+
+- **SAP On-premise connector:**
+
+  **What's new:** The new [SAP On-premise connector](https://docs.workato.com/connectors/sap.html) that can connect to almost any SAP system on-premise or on a firewall protected server (including AWS, IBM, etc.). The supported SAP versions include SAP ERP ECC 6.0 and later, SAP CRM, SAP SRM, SAP SCM, and any other modules compatible with the NetWeaver platform.
+
+  This first release supports asynchronous IDoc. Support for synchronous RFC will be coming soon.
+
+- **Google Sheets: Search rows limit increases to 50,000 rows**
+
+  Search rows action now can return up to 50,000 rows of result, up from the previous limit of 200 rows.
+
+- **Salesforce: Batch operations**
+
+  Apart from support for Salesforce bulk operations, Workato has included support for [Salesforce batch operations](https://docs.workato.com/connectors/salesforce/batch-operations.html), which make use of Salesforce’s Collections API.
+
+  These actions allow the creation and update of up to 2,000 records at a time. Users should make use of these operations when they are creating or updating small batches of Salesforce records, or if they wish to perform multiple operations without using Bulk API.
+
+
+- **ServiceNow: New trigger and action**
+
+  **Search records using query:** New Search records using query action allows the use of ServiceNow queries to filter the records you want. Supports up to 50,000 records retrieved per batch.
+
+  **Scheduled record search trigger:** New Scheduled record search trigger allows execution of query on a specified schedule. Query results will be returned in batches of records. Also supports up to 50,000 records retrieved per batch.
+
+  **Increased search action limit:** The actions **Search records, Search records (User)** and **Search records using query** can now be configured to return up to 50,000 records (up from 100).
+
+- **Okta: Scheduled trigger**
+
+  **What's new:** The new Okta Scheduled trigger allows a scheduled search instead of real-time exit.
+
+## Dec 11 - Dec 22
+
+### Connector enhancements
+
+- **Google sheets: New actions**
+
+    - New `Search rows` and `Update row` actions based on new Google Sheets API v4. Enable searching by simple field mappings and update rows in a sheet by row number.
+    - `New/updated row` trigger now monitors up to 10,000 rows, increased from the previous limit of 1000 row.
+
+- **SQL Server: Automatic chunking for upsert action**
+
+- **Redshift: Escape special characters for connection**
+
+- **Anaplan: More output fields for import and export action**
+
+
+### Announcements
+
+**Wrike API migration**
+On 19th December 2018, Workato's Wrike connectors have been updated to use Wrike's API v4.
+
+This update will disconnect all your existing Wrike connections. All recipes using Wrike connections will be stopped on 19th December 2018.
+
+**What you need to do:**
+
+Reconnect all Wrike connections in your account to use the updated connector. You can complete this action on or after December 19th, 2018.
+
+
 ## Nov 25 - Dec 10
 
 ### Platform enhancements
@@ -35,11 +96,11 @@ Our engineers are hard at work daily to make Workato better! View the latest upd
 - **ServiceNow: Subdomain routing**
 
   **Context**
-  
+
   In development lifecycles, teams typically clone their sandbox instances for deployment into production. In the process, webhooks in the sandbox instance also get copied over into production. As a result, webhook events in production gets sent to the sandbox recipes, causing an error.
 
   **What's new: Subdomain routing for webhooks**
-  
+
   To fix this, we’ve introduced subdomain routing. When an instance is cloned, the subdomain will change based on the instance it is in. This will ensure that webhooks in the cloned instance will be routed to the correct production recipe. To enable this behavior, simply stop and restart your ServiceNow recipes.
 
 
