@@ -10623,94 +10623,98 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="lookup-tables">Lookup tables</h1>
-<p>Lookup tables (AKA cross reference tables) enable users to quickly and easily lookup frequently used data that is static and immutable.</p>
-<p>Data in lookup tables is typically organized like a database table, with columns and rows of data. You can lookup an entry within the specified lookup table by using:</p>
-<ul>
-<li>Any column</li>
-<li>Multiple columns</li>
-</ul>
-<p>For example, if I&apos;m trying to move accounting entries from my sales app into my accounting app i.e. Salesforce to Intacct, I might find that both departments are using different account codes internally. In order to ensure data is synced accurately from Salesforce into Intacct, I would need to take the account codes from Salesforce, find the matching codes in Intacct, and create the Intacct accounting entries using the corresponding Intacct account codes. In the following table, any Salesforce entries coming in with the code 34267 will be written into Intacct under the code 6754.</p>
-<p><img src="../assets/images/features/lookup-tables/example-lookup-table.png" alt="Example lookup table">
-<em>Lookup table with the account ID in Salesforce, account ID in Intacct, and the account names</em></p>
-<p>Some other scenarios where you might need lookup tables:</p>
+<p>Lookup tables (similar to cross-reference tables) let you lookup frequently used data easily in a recipe.</p>
+<p>Data in lookup tables are typically organized like a database table, with columns and rows of data. You can lookup an entry within the specified lookup table by matching against data in one or more columns.</p>
+<p>For example, if you want to move account entries from your sales app (Salesforce) into the organization&apos;s accounting app (Intacct), you will find that both apps use different IDs internally.</p>
+<p>In account to ensure data is synced accurately from Salesforce into Intacct, you will need to take match the account IDs from Salesforce to the corresponding IDs in Intacct. In the example table, any Salesforce entries coming in with the ID <strong>34267</strong> will be written into Intacct under the ID <strong>6754</strong>.</p>
+<p><img src="../assets/images/features/lookup-tables/example-lookup-table.png" alt="Lookup table with the account IDs in Salesforce and Intacct, and the account names">
+<em>Lookup table with the account IDs in Salesforce and Intacct, and the account names</em></p>
+<p>Here are other common use cases for lookup tables:</p>
 <ul>
 <li>Given a city name, you want to get the zip code</li>
-<li>Given a metric unit, you want to convert to SI for distances</li>
+<li>Given data in metric units, you want to convert to imperial units for the downstream app</li>
 <li>Given a department and rank, you want to retrieve vacation accrual rates</li>
 </ul>
-<p>Lookup tables are enabled only for certain plans. Check the <a href="https://www.workato.com/pricing?audience=general" target="_blank">Pricing and Plans page</a> or reach out to Workato sales representatives at +1 (844) 469-6752 to find out more.</p>
+<blockquote>
+<p><strong>Lookup tables are enabled only for certain plans. Check the <a href="https://www.workato.com/pricing" target="_blank">Pricing and Plans page</a> to find out more.</strong></p>
+</blockquote>
 <h2 id="setting-up-your-lookup-tables">Setting up your lookup tables</h2>
 <p>There are three ways to upload data into your lookup tables:</p>
 <ul>
-<li>Import an existing CSV file</li>
-<li>Add new entries manually</li>
-<li>Add new entries via a recipe</li>
+<li><a href="#importing-an-existing-csv-file">Import an existing CSV file</a></li>
+<li><a href="#adding-new-entries-manually">Add new entries manually</a></li>
+<li><a href="#adding-new-entries-via-a-recipe">Add new entries via a recipe</a></li>
 </ul>
-<p>Note: Lookup tables are immutable and the existing entries cannot be modified or deleted.</p>
-<h2 id="importing-an-existing-csv-file">Importing an existing CSV file</h2>
+<h3 id="importing-an-existing-csv-file">Importing an existing CSV file</h3>
 <p>The GIF below walks you through the process of creating a lookup table and loading it with data imported from a CSV file.</p>
-<p><img src="../assets/images/features/lookup-tables/lookup-tables-1.gif" alt="Lookup1">
+<p><img src="../assets/images/features/lookup-tables/lookup-tables-1.gif" alt="Creating a new lookup table and importing a CSV file">
 <em>Creating a new lookup table and importing a CSV file</em></p>
-<h2 id="adding-new-entries-manually">Adding new entries manually</h2>
+<h3 id="adding-new-entries-manually">Adding new entries manually</h3>
 <p>You can manually enter additional lookup table entries.</p>
-<p><img src="../assets/images/features/lookup-tables/lookup-tables-2.png" alt="Lookup2">
+<p><img src="../assets/images/features/lookup-tables/lookup-tables-2.png" alt="Click on the Add new entry button">
 <em>Click on the Add new entry button</em></p>
-<p><img src="../assets/images/features/lookup-tables/lookup-tables-3.png" alt="Lookup3">
+<p><img src="../assets/images/features/lookup-tables/lookup-tables-3.png" alt="A new blank row will be generated for values to be entered">
 <em>A new blank row will be generated for values to be entered</em></p>
-<h2 id="adding-new-entries-via-a-recipe">Adding new entries via a recipe</h2>
+<h3 id="adding-new-entries-via-a-recipe">Adding new entries via a recipe</h3>
 <p>There is a <strong>Lookup table</strong> connector that allows you to automate your work with lookup tables. This connector supports <a href="#add-entry-action">adding of new entries</a> via a recipe.</p>
-<h2 id="using-the-lookup-table-connector">Using the lookup table connector</h2>
+<h3 id="using-the-lookup-table-connector">Using the lookup table connector</h3>
 <p>The <strong>Lookup table</strong> utility connector allows you to work with your tables via recipes. This connector supports the following actions:</p>
 <ul>
-<li>Lookup entry</li>
-<li>Search entries</li>
-<li>Add entry</li>
+<li><a href="#add-entry-action">Add entry</a></li>
+<li><a href="#lookup-entry-action">Lookup entry</a></li>
+<li><a href="#search-entries-action">Search entries</a></li>
+<li><a href="#update-entry-action">Update entry</a></li>
+<li><a href="#delete-entry-action">Delete entry</a></li>
+<li><a href="#truncate-table-action">Truncate table</a></li>
 </ul>
 <h3 id="add-entry-action">Add entry action</h3>
 <p>Add a new entry to an existing lookup table. You can use this action to keep your lookup tables updated, e.g. read newly created job titles from your human resources application and create a new entry for that job title in your lookup table.</p>
-<p><img src="../assets/images/features/lookup-tables/lookup-tables-7.gif" alt="Lookup7">
+<p><img src="../assets/images/features/lookup-tables/lookup-tables-7.gif" alt="Select the lookup table to write to and then input the values to provide for each cell of the row">
 <em>Select the lookup table to write to and then input the values to provide for each cell of the row</em></p>
 <h3 id="lookup-entry-action">Lookup entry action</h3>
 <p>The lookup entry action allows you to search for an entry (a row in the lookup table) by any of its values. The lookup entry action behaves like a search and retrieves a single entry. The first matching entry depends on the values passed in. If you have duplicate entries (i.e. your lookup will return more than one entry), only one entry will be retrieved.</p>
 <p>In the example below, we have a table called <strong>Vacation Rules</strong> with 4 columns - vacation type, department ID, job code and job title.</p>
-<p><img src="../assets/images/features/lookup-tables/lookup-tables-5.png" alt="Lookup5">
+<p><img src="../assets/images/features/lookup-tables/lookup-tables-5.png" alt="Using the lookup entry action in the recipe">
 <em>Using the lookup entry action in the recipe</em></p>
 <p>In the following gif, we configure the lookup entry table to search for a specific row that matches the values we have (in that job) for department ID and job code. In the subsequent step, we can see what&apos;s returned - a single entry with all 4 available values. If we were looking for the corresponding vacation type and job title, we can use those datapills from the datatree.</p>
 <p>The following gif walks you through the flow of configuring the lookup entry action to retrieve a matching entry.</p>
-<p><img src="../assets/images/features/lookup-tables/lookup-tables-6.gif" alt="Lookup6">
+<p><img src="../assets/images/features/lookup-tables/lookup-tables-6.gif" alt="Configuring the action to lookup entries with the matching job title and job code">
 <em>Configuring the action to lookup entries with the matching job title and job code</em></p>
 <h3 id="search-entries-action">Search entries action</h3>
 <p>The search entries action works similarly to the lookup action. The main difference between them is that lookup action returns a single entry whereas the search entries action returns a list of entries.</p>
 <p>Use this if you expect a list of matching entries to be returned, and wish to process the list accordingly.</p>
 <h3 id="update-entry-action">Update entry action</h3>
 <p>Updates an entry to an existing lookup table. This action requires the Entry ID to be mapped. You can retrieve the Entry ID from actions such as &quot;Search Entries&quot;, &quot;Add entry&quot; and &quot;Lookup Entry&quot; action.</p>
-<p><img src="../assets/images/features/lookup-tables/lookup-tables-8.gif" alt="Lookup8">
+<p><img src="../assets/images/features/lookup-tables/lookup-tables-8.gif" alt="Using the Update entry action to update Jean&apos;s account status to closed">
 <em>Using the Update entry action to update Jean&apos;s account status to closed</em></p>
 <h3 id="delete-entry-action">Delete entry action</h3>
 <p>Deletes an entry in the specified lookup table by using the Entry ID.</p>
 <p>For this example, the Entry ID is being retrieved from the Search action.</p>
-<p><img src="../assets/images/features/lookup-tables/lookup-tables-9.gif" alt="Lookup9">
+<p><img src="../assets/images/features/lookup-tables/lookup-tables-9.gif" alt="Using the delete entry action to delete Jeans data in the table Account">
 <em>Using the delete entry action to delete Jeans data in the table Account</em></p>
-<h3 id="truncate-table">Truncate table</h3>
+<h3 id="truncate-table-action">Truncate table action</h3>
 <p>Instead of deleting all entries one by one in the lookup table, the truncate table action deletes all entries from the specified lookup table. Using this action cannot be undone.</p>
 <p>In the example below, we are deleting all entries in the table <strong>Weekday</strong></p>
-<p><img src="../assets/images/features/lookup-tables/truncate-table.gif" alt="Truncate table">
+<p><img src="../assets/images/features/lookup-tables/truncate-table.gif" alt="Using truncate table action to delete all 7 entries in the table Weekday">
 <em>Using truncate table action to delete all 7 entries in the table Weekday</em></p>
 <h2 id="lookup-table-formulas">Lookup table formulas</h2>
-<p>Instead of using an action step to carry out the entry lookup, you can also use a formula to lookup entries in your lookup table. This is as efficient as the lookup action and can be done within the input field without requiring additional actions.</p>
+<p>Besides using an action step to work with a lookup table, you can also use a formula to lookup entries in your lookup table. This equivalent to the lookup action and can be done inside an input field.</p>
 <p>To use the formula, set the input field to formula mode, and enter the formula in this format:</p>
-<p>lookup(<code>table name</code>,<code>column name for search</code>: <code>data pill</code>)[<code>column name for result</code>]</p>
-<h3 id="performing-lookup-on-in-memory-table">Performing lookup on in memory table</h3>
-<p>Output of search entries can be used as in memory lookup table. In memory lookup function is useful when a recipe invokes the <code>lookup</code> function on the same lookup table 1000s of times.</p>
-<p>To use the lookup formula on a in memory table, set the input field to formula mode, and enter the formula in this format:</p>
-<p>lookup(<code>entries pill from search entries action</code>,<code>column name for search</code>: <code>data pill</code>)[<code>column name for result</code>]</p>
-<p><img src="../assets/images/features/lookup-tables/lookup-formula.gif" alt="lookup formula">
-<em>Using the lookup table formula to lookup days of the week entry in table Weekday</em></p>
+<pre><code class="lang-ruby">lookup(<span class="hljs-string">&quot;Account IDs&quot;</span>, <span class="hljs-string">&quot;Salesforce account ID&quot;</span><span class="hljs-symbol">:</span> datapill)[<span class="hljs-string">&quot;Intacct account ID&quot;</span>]
+</code></pre>
+<p>This formula will lookup the <strong>Intacct account ID</strong> of the first entry in the <strong>Account IDs</strong> table that matches any given <strong>Salesforce account ID</strong>.</p>
+<h3 id="performing-lookup-on-in-memory-table">Performing lookup on in-memory table</h3>
+<p>The output of a <strong>search entries action</strong> can be used as in-memory lookup table. This is useful when a recipe invokes the <code>lookup</code> function on the same lookup table 1000s of times by reducing the time taken to perform the lookup.</p>
+<p>To use the lookup formula on an in-memory table, you need to first create a <strong>Search entries action</strong>. This action should return a list of entries that you will need for your use case. Next, set the input field to formula mode, and enter the formula in this format:</p>
+<pre><code class="lang-ruby">lookup(Entries, <span class="hljs-string">&quot;Salesforce account ID&quot;</span><span class="hljs-symbol">:</span> datapill)[<span class="hljs-string">&quot;Intacct account ID&quot;</span>]
+</code></pre>
+<p><img src="../assets/images/features/lookup-tables/lookup-in-memory-tables.png" alt="Lookup an in-memory table">
+<em>Lookup an in-memory table</em></p>
+<p>Like the example before this, the formula will lookup the <strong>Intacct account ID</strong> of the first entry in the <strong>Account IDs</strong> table that matches any given <strong>Salesforce account ID</strong>. This time, however, it will lookup entries much quicker and only from the reduced list of entries from the initial search.</p>
 <h2 id="limits">Limits</h2>
-<p>Each lookup table supports up to 5 columns of data. Each column can be used as a key to lookup the entry.</p>
-<p><img src="../assets/images/features/lookup-tables/lookup-tables-4.png" alt="Lookup4">
+<p>Each lookup table supports up to 5 columns of data and a maximum of 10,000 entries per lookup table.</p>
+<p><img src="../assets/images/features/lookup-tables/lookup-tables-4.png" alt="Maximum of 5 data columns available">
 <em>Maximum of 5 data columns available</em></p>
-<p>There is a maximum of 5000 entries per lookup table.</p>
 
                                 
                                 </section>
@@ -10793,7 +10797,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Lookup tables","date":"2017-02-23T15:15:00.000Z","level":"1.16.3","depth":2,"next":{"title":"Setup","level":"1.16.3.1","depth":3,"anchor":"#setting-up-your-lookup-tables","path":"features/lookup-tables.md","ref":"features/lookup-tables.md#setting-up-your-lookup-tables","articles":[]},"previous":{"title":"Secondary connectors","level":"1.16.2","depth":2,"path":"features/secondary-connectors.md","ref":"features/secondary-connectors.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"features/lookup-tables.md","mtime":"2019-07-02T10:21:14.915Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-07-02T10:24:05.927Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Lookup tables","date":"2017-02-23T15:15:00.000Z","level":"1.16.3","depth":2,"next":{"title":"Setup","level":"1.16.3.1","depth":3,"anchor":"#setting-up-your-lookup-tables","path":"features/lookup-tables.md","ref":"features/lookup-tables.md#setting-up-your-lookup-tables","articles":[]},"previous":{"title":"Secondary connectors","level":"1.16.2","depth":2,"path":"features/secondary-connectors.md","ref":"features/secondary-connectors.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"features/lookup-tables.md","mtime":"2019-07-09T07:22:25.664Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-07-09T07:24:50.229Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
