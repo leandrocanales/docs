@@ -10639,7 +10639,51 @@
                                 
                                 <p><img src="assets/images/product-updates-banner.png" alt="Product Updates banner"></p>
 <p>Our engineers are hard at work daily to make Workato better! View the latest updates to our platform below.</p>
-<h3 id="platform-security-just-in-time-provisioning-now-supports-custom-roles">Platform security: Just-in-Time provisioning now supports custom roles</h3>
+<h2 id="connector-update-hubspot">Connector update: Hubspot</h2>
+<h6 id="jul-20-2019">Jul 20, 2019</h6>
+<p>Check out our <a href="#major-connector-update-hubspot">last update</a> on Hubspot for more information on the latest major Hubspot connector enhancement.</p>
+<h4 id="hubspot-companies-api-support">HubSpot Companies API Support</h4>
+<p>Support has been added for the Company object in Hubspot with the following triggers/actions:</p>
+<p><strong>Triggers:</strong></p>
+<ul>
+<li>New company</li>
+<li>New/updated company</li>
+</ul>
+<p><strong>Actions:</strong></p>
+<ul>
+<li>Create company</li>
+<li>Update company</li>
+<li>Get company details by ID</li>
+<li>Search companies by domain name</li>
+</ul>
+<h4 id="hubspot-additional-oauth-scopes">HubSpot Additional OAuth Scopes</h4>
+<p>Support has been added for users to select multiple OAuth scopes when establishing a connection with our HubSpot connector. This will allow you to build custom actions for HubSpot APIs beyond the scope of Contacts, Deals, Engagements and Companies.</p>
+<h2 id="connector-update-wrike">Connector update: Wrike</h2>
+<h6 id="jul-17-2019">Jul 17, 2019</h6>
+<h4 id="custom-fields-selector-on-triggers-and-actions">Custom fields selector on triggers and actions</h4>
+<p>The custom field selector has been added to the Wrike connector&apos;s triggers and actions. This field selector is usually implemented on applications that usually have many customer-defined custom fields (eg. Salesforce, Quickbase).</p>
+<p>The Fields list input field allows users to select the fields they wish to use in the recipe. This ensures that the recipe will be affected only by changes to these subset of fields, and therefore minimize impact on the recipe due to schema changes. Some benefits include:</p>
+<ul>
+<li>Improved recipe performance</li>
+<li>Improved recipe usability due to smaller datatree with only relevant datapills</li>
+<li>Minimizes impact on recipe by Salesforce object schema changes</li>
+</ul>
+<h2 id="connector-update-marketo">Connector update: Marketo</h2>
+<h6 id="jul-06-2019">Jul 06, 2019</h6>
+<h4 id="marketo-upsert-leads-in-batches">Marketo upsert leads in batches</h4>
+<p>The Marketo connector has been enhanced with a new action: Upsert lead (Batch). By utilizing bulk APIs to sync large amounts of data, fewer jobs are needed and fewer API calls to move the same amount of data. As a result, recipe run time often decreases.</p>
+<p>The action accepts a list of 300 leads at maximum.</p>
+<h2 id="major-connector-update-hubspot">Major connector update: Hubspot</h2>
+<h6 id="jun-30-2019">Jun 30, 2019</h6>
+<h4 id="update-details">Update details</h4>
+<p>The Hubspot connector has been updated to support <a href="https://www.workato.com/integrations/hubspot" target="_blank">new triggers, actions and custom fields</a>.</p>
+<p>The new set of triggers and actions enables automation of marketing workflows for campaign management, email list generation, lead enrichment, lead tracking, customer onboarding, partner onboarding, and more. They enable Hubspot customers to build custom workflows, connect to on-prem apps/databases, and perform bulk operations e.g. syncing millions of contacts with Salesforce or Mailchimp.</p>
+<h4 id="resources">Resources</h4>
+<ul>
+<li><a href="https://www.workato.com/integrations/hubspot" target="_blank">Connector Overview</a></li>
+<li><a href="https://www.workato.com/recipes/browse?q=hubspot" target="_blank">Popular Automations</a></li>
+</ul>
+<h2 id="platform-security-just-in-time-provisioning-now-supports-custom-roles">Platform security: Just-in-Time provisioning now supports custom roles</h2>
 <h6 id="jun-23-2019">Jun 23, 2019</h6>
 <h4 id="what-is-just-in-time-provisioning">What is Just-in-time provisioning</h4>
 <p>Just-in-Time provisioning enables customers to use a SAML assertion to create users in downstream  apps e.g. Workato on-demand when users log into the app for the very first time.
@@ -10673,15 +10717,16 @@ This eliminates the need to manually provision user accounts in advance. For exa
 <li><a href="https://docs.workato.com/user-accounts-and-teams/team-collaboration.html#saml-just-in-time-provisioning" target="_blank">Documentation</a></li>
 </ul>
 <hr>
-<h3 id="platform-security-two-factor-authentication">Platform security: Two-factor authentication</h3>
+<h2 id="platform-security-two-factor-authentication">Platform security: Two-factor authentication</h2>
 <h6 id="jun-12-2019">Jun 12, 2019</h6>
 <h4 id="what-is-two-factor-authentication-2fa">What is Two-Factor Authentication (2FA)</h4>
-<p>2FA is an extra layer of security used to make sure that people trying to gain access to an online account are who they say they are. First, a user will enter their username and a password. Then, instead of immediately gaining access, they will be required to provide another piece of information. This second factor could come from one of the following categories:</p>
+<p>Two-Factor Authentication is an extra layer of security used to make sure that people trying to gain access to an online account are who they say they are. First, a user will enter their username and a password. Then, instead of immediately gaining access, they will be required to provide another piece of information. This second factor could come from one of the following categories:</p>
 <ol>
 <li><strong>Something you know:</strong> This could be a personal identification number (PIN), a password, answers to &#x201C;secret questions&#x201D; or a specific keystroke pattern</li>
 <li><strong>Something you have:</strong> Typically, a user would have something in their possession, like a credit card, a smartphone, or a small hardware token</li>
 <li><strong>Something you are:</strong> This category is a little more advanced, and might include biometric pattern of a fingerprint, an iris scan, or a voice print</li>
 </ol>
+<p><strong>Source</strong>: <a href="https://authy.com/what-is-2fa/" target="_blank">https://authy.com/what-is-2fa/</a></p>
 <h4 id="for-whom">For Whom</h4>
 <ul>
 <li>Available for all plans</li>
@@ -10707,7 +10752,7 @@ This eliminates the need to manually provision user accounts in advance. For exa
 <li><a href="https://www.dropbox.com/s/7dyi467bsl3aw7v/2FA%20Tutorial%20-%20V02.mp4?dl=0-" target="_blank">Video demo</a></li>
 </ul>
 <hr>
-<h3 id="connector-update-zendesk-sunshine">Connector update: Zendesk Sunshine</h3>
+<h2 id="connector-update-zendesk-sunshine">Connector update: Zendesk Sunshine</h2>
 <h6 id="jun-03-2019">Jun 03, 2019</h6>
 <h4 id="introduction-to-zendesk-sunshine">Introduction to Zendesk Sunshine</h4>
 <ul>
@@ -10736,7 +10781,7 @@ This eliminates the need to manually provision user accounts in advance. For exa
 <li><a href="https://www.workato.com/integrations/zendesk" target="_blank">Overview</a></li>
 </ul>
 <hr>
-<h3 id="webhooks-wizard">Webhooks wizard</h3>
+<h2 id="webhooks-wizard">Webhooks wizard</h2>
 <h6 id="jun-03-2019">Jun 03, 2019</h6>
 <h4 id="background-why-webhooks">Background: Why webhooks?</h4>
 <p>Webhooks is part of a larger platform offering: custom connectivity. While we have a strong list of triggers out of the box, user data shows that 44% of our users require custom connectivity to some extent. It is typically used to connect to proprietary or legacy apps.</p>
@@ -10764,7 +10809,7 @@ Lastly, it is difficult to verify that a webhook trigger is configured correctly
 <li><a href="https://docs.workato.com/connectors/workato-webhooks/common-errors.html" target="_blank">Common errors and how to resolve them</a></li>
 </ul>
 <hr>
-<h3 id="new-connector-airtable">New connector: Airtable</h3>
+<h2 id="new-connector-airtable">New connector: Airtable</h2>
 <h6 id="may-26-2019">May 26, 2019</h6>
 <h4 id="for-whom">For Whom</h4>
 <ul>
@@ -10790,7 +10835,7 @@ Lastly, it is difficult to verify that a webhook trigger is configured correctly
 <li><a href="https://www.workato.com/integrations/airtable" target="_blank">Overview</a></li>
 </ul>
 <hr>
-<h3 id="new-connector-coupa">New connector: Coupa</h3>
+<h2 id="new-connector-coupa">New connector: Coupa</h2>
 <h6 id="may-19-2019">May 19, 2019</h6>
 <h4 id="for-whom">For Whom</h4>
 <ul>
@@ -10829,7 +10874,7 @@ Lastly, it is difficult to verify that a webhook trigger is configured correctly
 <li><a href="https://www.coupa.com/coupalink/middleware/workato/" target="_blank">Coupa Link</a></li>
 </ul>
 <hr>
-<h3 id="api-platform-with-jwt-authentication">API Platform with JWT authentication</h3>
+<h2 id="api-platform-with-jwt-authentication">API Platform with JWT authentication</h2>
 <h6 id="may-12-2019">May 12, 2019</h6>
 <h4 id="for-whom">For Whom</h4>
 <ul>
@@ -10871,7 +10916,7 @@ Lastly, it is difficult to verify that a webhook trigger is configured correctly
 <li><a href="https://docs.workato.com/api-mgmt/access-tokens.html" target="_blank">Documentation</a></li>
 </ul>
 <hr>
-<h3 id="automation-dashboard-and-job-history-search">Automation Dashboard And Job History Search</h3>
+<h2 id="automation-dashboard-and-job-history-search">Automation Dashboard And Job History Search</h2>
 <h6 id="may-05-2019">May 05, 2019</h6>
 <h4 id="for-whom">For Whom</h4>
 <ul>
@@ -10912,7 +10957,7 @@ Lastly, it is difficult to verify that a webhook trigger is configured correctly
 <li><a href="https://product.workato.com/2019/04/09/apr-2019-product-release/" target="_blank">Product Blog post</a></li>
 </ul>
 <hr>
-<h3 id="recipe-lifecycle-management-automation-with-manifests-and-apis">Recipe Lifecycle Management automation with Manifests and APIs</h3>
+<h2 id="recipe-lifecycle-management-automation-with-manifests-and-apis">Recipe Lifecycle Management automation with Manifests and APIs</h2>
 <h6 id="apr-28-2019">Apr 28, 2019</h6>
 <h4 id="for-whom">For Whom</h4>
 <ul>
@@ -11026,7 +11071,7 @@ Support integration with external version control software and  deployment autom
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Product Updates","date":"2018-06-05T21:45:00.000Z","level":"1.26","depth":1,"next":{"title":"Contact us","level":"1.27","depth":1,"path":"contact-us.md","ref":"contact-us.md","articles":[]},"previous":{"title":"IP whitelists","level":"1.25.1","depth":2,"anchor":"#ip_whitelists","path":"security.md","ref":"security.md#ip_whitelists","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"product-updates.md","mtime":"2019-07-19T16:26:02.657Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-07-19T16:27:37.326Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Product Updates","date":"2018-06-05T21:45:00.000Z","level":"1.26","depth":1,"next":{"title":"Contact us","level":"1.27","depth":1,"path":"contact-us.md","ref":"contact-us.md","articles":[]},"previous":{"title":"IP whitelists","level":"1.25.1","depth":2,"anchor":"#ip_whitelists","path":"security.md","ref":"security.md#ip_whitelists","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"product-updates.md","mtime":"2019-07-19T16:52:22.016Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-07-19T16:54:27.077Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
