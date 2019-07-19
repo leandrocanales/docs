@@ -10638,21 +10638,103 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="pubsub-by-workato">PubSub by Workato</h1>
-<p>The PubSub connector enables you to implement integration solutions that require an event-driven, messsage-oriented architecture that decouples publishers and consumers. The connector implements a messaging system with support for guaranteed and persistent delivery. This allows us to chain recipes sequentially, as a recipe can publish a message that multiple other recipes consume as a trigger to kickstart their workflow.</p>
+<p>The PubSub connector enables you to implement integration solutions that require an event-driven, message-oriented architecture that decouples publishers and consumers. The connector implements a messaging system with support for guaranteed and persistent delivery. This allows us to chain recipes sequentially, as a recipe can publish a message that multiple other recipes consume as a trigger to kickstart their workflow.</p>
 <p>This connector allows us to add or modify recipes which are consumers without affecting recipes which are publishers. This enables zero downtime for the publisher recipe as we can add new consumers without impacting or requiring changes in the publisher recipe. This decoupling results in simpler recipes and reduces the time required to create, test, and maintain recipes.</p>
 <h2 id="how-to-connect-to-the-pubsub-connector-on-workato">How to connect to the PubSub connector on Workato</h2>
 <p>There is no connection required to use the PubSub connector, as schemas are stored in the Workato account for recipes to interact with.</p>
-<h2 id="working-with-the-pubsub-connector">Working with the PubSub connector</h2>
 <p>In order to work with the PubSub connector, users require access to the PubSub topics feature, which is enabled only for certain plans. Check the <a href="https://www.workato.com/pricing?audience=general" target="_blank">Pricing and Plans page</a> or reach out to Workato sales representatives at +1 (844) 469-6752 to find out more.</p>
+<h2 id="how-to-setup-topics-in-pubsub">How to setup topics in PubSub</h2>
+<p>You can go to the PubSub main feature page by clicking <strong>Tools</strong> &gt; <strong>View all Tools</strong> &gt; <strong>Pub/Sub</strong>.</p>
+<p><img src="../assets/images/connectors/pubsub/manage-topics-empty.png" alt="Manage topics in PubSub">
+<em>Manage topics in PubSub</em></p>
+<p>Here, you can view all the topics that you have created. You can use the <strong>search topics</strong> function to quickly locate topics by keyword.</p>
 <h3 id="creating-and-managing-topics">Creating and managing topics</h3>
-<p>When using the PubSub connector, you can listen to messages in a topic or publish messages to a topic. In order to do so, you have to first create a topic, and define the message structure for that topic, so that publishers and consumers alike know what to expect when sending or receiving messages.</p>
-<p>You can create and manage your topics on the topics feature page. </p>
-<p>To access the topics feature page, click on &apos;Tools&apos; in the top navigation bar &gt; &apos;View all Tools&apos; and then on &apos;Pub/Sub&apos;.</p>
-<p><img src="../assets/images/connectors/pubsub/PubSub-nav.gif" alt="Manage topics">
-<em>Manage and create topics on the topics page</em></p>
-<p>When creating topics, you will need to define what the data structure of the messages will look like. This structure can be subsequently edited.</p>
-<p><img src="../assets/images/connectors/pubsub/defining-topic-schema.gif" alt="Defining topic schema">
-<em>Editing the topic message schema definition</em></p>
+<p>In order to work with PubSub messages, you have to first create and define a topic. So publishers and consumers alike know what to expect when sending or receiving messages.</p>
+<p>Click on <strong>New topic</strong> to get started.</p>
+<p><img src="../assets/images/connectors/pubsub/new-topic.png" alt="New topic">
+<em>New topic</em></p>
+<p>When creating topics, you will need to define what the messages will look like.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>The name of your new topic.</td>
+</tr>
+<tr>
+<td>Time-to-live</td>
+<td>The number of days until the message expires. See more <a href="#time-to-live-configuration">here</a>.</td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>The message fields for this topic. See more <a href="#topic-schema-configuration">here</a>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="topic-schema-configuration">Topic schema configuration</h4>
+<p>When creating topics, you will need to define what the message will look like. This structure can be subsequently edited.</p>
+<p><img src="../assets/images/connectors/pubsub/add-new-field.png" alt="Defining message field">
+<em>Defining message field</em></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>The name of a new message field.</td>
+</tr>
+<tr>
+<td>Data type</td>
+<td>Select the data type from a dropdown.</td>
+</tr>
+<tr>
+<td>Optional</td>
+<td>Choose if this message field is optional. Default is No.</td>
+</tr>
+<tr>
+<td>Hint</td>
+<td>Provide a hint for this message field.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="time-to-live-configuration">Time-to-live configuration</h4>
+<p>Time-to-live (TTL) is a mechanism that limits the lifespan of data on a network. All PubSub messages are configured with a lifespan (<em>max 90 days</em>). Once a message expires, it is discarded and can no longer be received by recipes.</p>
+<p>By constraining the lifespan of your data, you ensure that your sensitive data does not circulate endlessly. This systematically phases out old messages and prevents your recipe from processing obsolete data.</p>
+<blockquote>
+<p>To work with static and immutable data, see <a href="../features/lookup-tables.html">Lookup tables by Workato</a>.</p>
+</blockquote>
+<p>Your messages TTL are configured on a per-topic basis. This allows you to customize the message TTL of each topic according to your use-case requirements.</p>
+<ul>
+<li><strong>Minimum</strong><ul>
+<li>All messages will stay on the topic for at least <strong>1 day</strong>.</li>
+</ul>
+</li>
+<li><strong>Maximum</strong><ul>
+<li>For all PubSub messages, the longest your message can remain on the topic is <strong>90 days</strong>.</li>
+<li>The maximum message TTL is also limited by your data retention policy. Workato can only store messages up to the configured limit in your data retention setting.<ul>
+<li>If it is not configured explicitly, Workato will use the maximal plan-based value. For more information on data retention policies, click <a href="../data-retention.html">here</a>.</li>
+</ul>
+</li>
+<li>Each message has a 10KB size limit.</li>
+</ul>
+</li>
+</ul>
+<p><img src="../assets/images/connectors/pubsub/ttl-exceed-range.png" alt="Message ttl exceed supported time range">
+  <em>Message ttl exceed supported time range</em></p>
+<blockquote>
+<p>Note: The maximum lifespan of a message TTL is 90 days or the user data retention limit (<em>whichever is lower</em>). Users on the <em>base</em> plan will have a maximum TTL of 30 days, while users on the <em>enterprise</em> plan will have a maximum TTL of 90 days.</p>
+</blockquote>
+<h2 id="working-with-the-pubsub-connector">Working with the PubSub connector</h2>
+<p>After configuring your topics schema, you can now subscribe to messages using the <a href="#using-the-new-message-trigger">New message trigger</a> or publish messages using the <a href="#using-the-publish-message-action">Publish message action</a></p>
 <h3 id="using-the-new-message-trigger">Using the new message trigger</h3>
 <p>The new message trigger allows us to subscribe to a specific topic in Workato. Any messages published to that topic will be picked up by the trigger as a single trigger event.</p>
 <p><img src="../assets/images/connectors/pubsub/new-message-trigger.png" alt="New message trigger configuration">
@@ -10763,7 +10845,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"PubSub by Workato","date":"2017-09-07T14:00:00.000Z","level":"1.20.33","depth":2,"next":{"title":"Connection setup","level":"1.20.33.1","depth":3,"anchor":"#how-to-connect-to-the-pubsub-connector-on-workato","path":"connectors/pubsub.md","ref":"connectors/pubsub.md#how-to-connect-to-the-pubsub-connector-on-workato","articles":[]},"previous":{"title":"New/updated row trigger","level":"1.20.32.8","depth":3,"path":"connectors/postgresql/updated-row-trigger.md","ref":"connectors/postgresql/updated-row-trigger.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"connectors/pubsub.md","mtime":"2019-07-19T05:18:40.661Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-07-19T05:21:42.815Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"PubSub by Workato","date":"2017-09-07T14:00:00.000Z","search":{"keywords":["message","publish","subscribe","reuse","time to live","time-to-live","ttl"]},"level":"1.20.33","depth":2,"next":{"title":"Connection setup","level":"1.20.33.1","depth":3,"anchor":"#how-to-connect-to-the-pubsub-connector-on-workato","path":"connectors/pubsub.md","ref":"connectors/pubsub.md#how-to-connect-to-the-pubsub-connector-on-workato","articles":[]},"previous":{"title":"New/updated row trigger","level":"1.20.32.8","depth":3,"path":"connectors/postgresql/updated-row-trigger.md","ref":"connectors/postgresql/updated-row-trigger.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"connectors/pubsub.md","mtime":"2019-07-19T16:26:02.641Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-07-19T16:27:37.326Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
