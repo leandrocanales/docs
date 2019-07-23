@@ -57,13 +57,9 @@ connection: {
 }
 ```
 
-## apply
-
-Synonym of the `credentials` block: Basically how to apply the credentials to an action/trigger/test request. All requests made in actions, triggers, tests and pick lists will be applied with the credentials defined here.
-
 ## acquire
 
-Context is same as an action's execute block. You can write the require code here to acquire and store relevant credentials data to be used in the `apply` block.
+Context is same as an action's execute block. You can write the required code here to acquire and store relevant credentials data to be used in the `apply` block.
 ```ruby
 acquire: lambda do |connection|
   {
@@ -106,6 +102,35 @@ Original `connection` object
 
 This new connection object will be passed into all actions, triggers, test and pick lists as the `connection` argument.
 
+## apply
+
+Synonym of the `credentials` block: Basically how to apply the credentials to an action/trigger/test request. All requests made in actions, triggers, tests and pick lists will be applied with the credentials defined here.
+
+Here are a list of accepted inputs into the apply block
+
+```ruby
+apply: lambda do |connection|
+  # Adds in URL parameters passed as a hash object
+  # i.e. authtoken=[connection['authtoken']]
+  params(authtoken: connection['authtoken'])
+
+  #Adds in payload fields (PATCH, POST, PUT only) pass as hash
+  payload(grant_type: "authorization_code",
+          client_id: connection["client_id"],
+          client_secret: connection["client_secret"],
+          code: auth_code)
+
+  # Adds in headers into every request passed as a hash.
+  # i.e. Authorization : Bearer [given access token]
+  headers("Authorization": "Bearer #{connection["access_token"]}")  
+
+  # Used in conjunction with password function
+  # i.e. sends the input as username and password in HTTP authentication
+  user(connection["username"])   
+  password(connection["username"])
+end
+```
+
 > The "apply" block will not be applied to any requests made in "acquire". So you will have to include the required credentials for a successful API request here.
 
 ## refresh_on
@@ -128,7 +153,7 @@ The example here shows multiple ways that we can define "signals" to watch.
 - `401`: The response status code
 - `"Unauthorized"`: The exact string matching the whole body or title of response
 - `/Unauthorized/`: Regex matching the body or title of response
-- `/Invalid Ticket Id/`: The actual "message" to watch for
+- `/Invalid Ticket Id/`: The actual "message" to watch for in the case of the Zoho API
 
 ## detect_on
 

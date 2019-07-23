@@ -42,7 +42,7 @@ Here, the fields are different for each document, hence a user first chooses a d
 object_definition: {
   document: {
     fields: lambda do |_connection, config_fields|
-      return [] if config_fields.blank?
+      next [] if config_fields.blank?
       get("https://www.webmerge.me/api/documents/#{config_fields["document_id"]}/fields").
         map { |field| field.slice("name") }
     end
@@ -51,3 +51,6 @@ object_definition: {
 ```
 
 While the config_fields is empty, document objects will have no fields (empty array of fields). As soon as config_fields is given a value, a request is made to retrieve the fields present in this document. From a recipe user perspective, the action will appear initially as a single input with a list of documents. After selecting a document, the corresponding set of fields will be generated, to be used in the recipe.
+
+![config_fields schema screenshot](/assets/images/sdk/config_fields_demo.gif)
+ *Configuration fields in action*
