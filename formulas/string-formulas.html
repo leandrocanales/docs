@@ -11868,30 +11868,63 @@
 </table>
 <hr>
 <h2 id="tocurrency">to_currency</h2>
-<p>Formats integers/numbers to a currency-style. You may add the precision as well. (Defaults to 2 decimal points)</p>
+<p>Formats integers/numbers to a currency-style.</p>
 <h3 id="example">Example</h3>
 <table>
 <thead>
 <tr>
 <th>Example</th>
+<th>Description</th>
 <th>Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>&quot;12345.60&quot;.to_currency</td>
-<td>&quot;$12345.60&quot;</td>
+<td>&quot;345.60&quot;.to_currency</td>
+<td>Adds default currency symbol &quot;$&quot;</td>
+<td>&quot;$345.60&quot;</td>
 </tr>
 <tr>
-<td>&quot;12345.678&quot;.to_currency</td>
-<td>&quot;$12345.68&quot;</td>
+<td>&quot;345.60&quot;.to_currency(unit: &quot;&#x20AC;&quot;)</td>
+<td>Changes the default currency unit</td>
+<td>&quot;&#x20AC;345.60&quot;</td>
 </tr>
 <tr>
-<td>&quot;12345.678&quot;.to_currency(precision: 3)</td>
-<td>&quot;$12345.678&quot;</td>
+<td>&quot;345.60&quot;.to_currency(format: &quot;%n %u&quot;)</td>
+<td>Changes the position of the number relative to the unit (where the number is represented by <code>%n</code> and the currency unit is represented by <code>%u</code>). Accepts 0 or 1 spaces in between. Defaults to <code>&quot;%u%n&quot;</code>.</td>
+<td>&quot;345.60 $&quot;</td>
+</tr>
+<tr>
+<td>&quot;-345.60&quot;.to_currency(negative_format: &quot;(%u%n)&quot;)</td>
+<td>Specifies the format when the number is negative (where the number is represented by <code>%n</code> and the currency unit is represented by <code>%u</code>).</td>
+<td>&quot;($345.60)&quot;</td>
+</tr>
+<tr>
+<td>&quot;345.678&quot;.to_currency</td>
+<td>Precision defaults to 2 decimal places</td>
+<td>&quot;$345.68&quot;</td>
+</tr>
+<tr>
+<td>&quot;345.678&quot;.to_currency(precision: 3)</td>
+<td>Change the precision by specifying the number of decimal places</td>
+<td>&quot;$345.678&quot;</td>
+</tr>
+<tr>
+<td>&quot;345.678&quot;.to_currency(separator: &quot;,&quot;)</td>
+<td>Specify the <strong>decimal separator</strong> as &quot;.&quot;, &quot;,&quot; or &quot; &quot;. Defaults to &quot;.&quot;.</td>
+<td>&quot;$345,68&quot;</td>
+</tr>
+<tr>
+<td>&quot;12345.678&quot;.to_currency(delimiter: &quot;.&quot;)</td>
+<td>Specify the <strong>thousands separator</strong> as &quot;,&quot;, &quot;.&quot; or &quot; &quot;. Defaults to &quot;,&quot;.</td>
+<td>&quot;&quot;$12.345.68&quot;</td>
 </tr>
 </tbody>
 </table>
+<p>A comma-separated combination of these may be used to achieve the desired currency format. For example:</p>
+<pre><code class="lang-ruby"><span class="hljs-string">&quot;12345.678&quot;</span>.to_currency(<span class="hljs-symbol">delimiter:</span> <span class="hljs-string">&quot;.&quot;</span>, <span class="hljs-symbol">format:</span> <span class="hljs-string">&quot;%n %u&quot;</span>, <span class="hljs-symbol">precision:</span> <span class="hljs-number">2</span>, <span class="hljs-symbol">separator:</span> <span class="hljs-string">&quot;,&quot;</span>, <span class="hljs-symbol">unit:</span> <span class="hljs-string">&quot;&#x20AC;&quot;</span>)
+</code></pre>
+<p>will yield: <code>&quot;12.345,68 &#x20AC;&quot;</code>.</p>
 <hr>
 <h2 id="tocurrencycode">to_currency_code</h2>
 <p>Convert alpha-2/3 country code or country name to ISO4217 currency code</p>
@@ -12082,7 +12115,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"String formulas","date":"2017-03-30T05:00:00.000Z","level":"1.8.2","depth":2,"next":{"title":"Number formulas","level":"1.8.3","depth":2,"path":"formulas/number-formulas.md","ref":"formulas/number-formulas.md","articles":[]},"previous":{"title":"Ternary condition","level":"1.8.1.4","depth":3,"anchor":"#conditionals","path":"formulas/formula-mode.md","ref":"formulas/formula-mode.md#conditionals","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"formulas/string-formulas.md","mtime":"2019-07-23T06:43:20.305Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-07-23T06:45:28.247Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"String formulas","date":"2017-03-30T05:00:00.000Z","level":"1.8.2","depth":2,"next":{"title":"Number formulas","level":"1.8.3","depth":2,"path":"formulas/number-formulas.md","ref":"formulas/number-formulas.md","articles":[]},"previous":{"title":"Ternary condition","level":"1.8.1.4","depth":3,"anchor":"#conditionals","path":"formulas/formula-mode.md","ref":"formulas/formula-mode.md#conditionals","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"formulas/string-formulas.md","mtime":"2019-07-24T11:19:31.835Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-07-24T11:21:53.777Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
