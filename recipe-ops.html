@@ -11036,7 +11036,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="recipeops-by-workato">RecipeOps by Workato</h1>
-<p>The RecipeOps connector enables building of recipes to monitor and manage active recipes.</p>
+<p>The RecipeOps connector enables the building of recipes to monitor and manage active recipes.</p>
 <p>Stopped recipes and failed jobs can have automated responses and notifications to mitigate their impact on critical business processes. Account, recipe and job details can also be retrieved via the RecipeOps connector.</p>
 <h2 id="example-scenarios">Example scenarios</h2>
 <ul>
@@ -11044,7 +11044,7 @@
 <li>Schedule on-call teams and build escalation policies using Workato recipe logic</li>
 <li>Flag low transaction counts and notify integration managers</li>
 <li>Build job history report logs or audit reports in Google Sheets</li>
-<li>Build recipe reports for an overview of automations, connected apps, etc. in the company</li>
+<li>Build recipe reports for an overview of automations and connected apps in the company</li>
 </ul>
 <h2 id="connection">Connection</h2>
 <p>You can monitor recipes in your account, or someone else&apos;s account (if they have shared API keys).</p>
@@ -11053,21 +11053,18 @@
 <li>For <strong>My account</strong>, no further authentication information is needed</li>
 <li>For <strong>Someone else&apos;s account</strong>, the account email and API key has to be provided</li>
 </ul>
-<p>The following shows the different fields required for the available connection options.</p>
-<p><img src="assets/images/recipe-ops/establish-workato-admin-connection.gif" alt="Establish RecipeOps connection">
-<em>Establishing RecipeOps connection</em></p>
+<p>The following shows the fields required for the connection to a different Workato account.</p>
+<p><img src="assets/images/recipe-ops/establish-connection.png" alt="Establish RecipeOps connection with other Workato account">
+<em>Establishing RecipeOps connection with other Workato account</em></p>
 <p>The managed user has to retrieve the API key from their <strong>Account settings &gt; API key</strong>.</p>
 <p><img src="assets/images/recipe-ops/api-key.png" alt="API key">
 <em>Retrieve API key from Settings &gt; API key</em></p>
 <h2 id="triggers">Triggers</h2>
 <h3 id="new-failed-job-trigger">New failed job trigger</h3>
-<p>The <strong>New failed job</strong> trigger is able to monitor all active recipes, or  selected recipes, for failed jobs. This is useful in ensuring that key recipes are monitored and corrective actions, including notifications, can be automated.</p>
-<p>When monitoring selected recipes, provide the IDs of recipes to watch.</p>
+<p>The <strong>New failed job</strong> trigger is able to monitor all active recipes or selected recipes, for failed jobs. This is useful in ensuring that key recipes are monitored and corrective actions, including notifications, can be automated.</p>
+<p>When monitoring selected recipes, provide their <a href="#how-to-find-recipe-id">recipe IDs</a>.</p>
 <p><img src="assets/images/recipe-ops/specify-recipes-to-monitor-failed-jobs.gif" alt="Specify recipes to monitor for failed jobs">
 <em>Specify recipes to monitor for failed jobs</em></p>
-<p>Recipe IDs can be found in the recipe page URL as highlighted below.</p>
-<p><img src="assets/images/recipe-ops/recipe-url.png" alt="Recipe URL">
-<em>Recipe IDs can be found in recipe URL</em></p>
 <p>Similar to the error notification emails, this trigger will trigger only once an hour for the same error type. For example:</p>
 <ul>
 <li><p>If the monitored recipe encounters 5 failed jobs with the same error within a 2-hour timespan, the recipe will only pick up 2 trigger events.</p>
@@ -11077,11 +11074,12 @@
 </ul>
 <h3 id="recipe-stopped-by-workato-trigger">Recipe stopped by Workato trigger</h3>
 <p>Under certain error conditions, Workato will stop an active recipe, e.g. when 60 cumulative authentication errors occur in the trigger. Generally, Workato stops recipes when they encounter non-recoverable errors, i.e. when Workato has attempted to carry out the trigger or action without success for a consecutive number of times.</p>
-<p>This trigger allows users to build &#x2018;restart&#x2019; logic or other custom escalation policies for key recipes that should not be stopped.</p>
-<p>When monitoring selected recipes, provide the IDs of recipes to watch.</p>
+<p>This trigger allows users to build contingencies for key recipes that should not be stopped. For instance, you can enforce a <strong>restart logic</strong> or setup customer escalation policies to inform key personnel when the recipe has been stopped.</p>
+<p>When monitoring selected recipes, provide their <a href="#how-to-find-recipe-id">recipe IDs</a>.</p>
 <p><img src="assets/images/recipe-ops/specify-recipes-to-monitor-stopped-recipes.gif" alt="Specify recipes to monitor for stopped state">
 <em>Specify recipes to monitor whether the recipes are stopped by Workato</em></p>
-<p>Recipe IDs can be found in the recipe page URL as highlighted below.</p>
+<h3 id="how-to-find-recipe-id">How to find recipe id</h3>
+<p>Track your key recipes with their unique recipe IDs. You can find the recipe ID in URL of the recipe page.</p>
 <p><img src="assets/images/recipe-ops/recipe-url.png" alt="Recipe URL">
 <em>Recipe IDs can be found in recipe URL</em></p>
 <h2 id="actions">Actions</h2>
@@ -11203,7 +11201,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"RecipeOps","date":"2017-03-02T02:00:00.000Z","level":"1.6.5","depth":2,"next":{"title":"Connection setup","level":"1.6.5.1","depth":3,"anchor":"#connection","path":"recipe-ops.md","ref":"recipe-ops.md#connection","articles":[]},"previous":{"title":"Common scenarios for rerunning jobs","level":"1.6.4.3","depth":3,"anchor":"#common-scenarios-for-rerunning-jobs","path":"recipes/rerun-job.md","ref":"recipes/rerun-job.md#common-scenarios-for-rerunning-jobs","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"recipe-ops.md","mtime":"2019-07-28T13:46:19.602Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-07-28T13:48:46.715Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"RecipeOps","date":"2017-03-02T02:00:00.000Z","level":"1.6.5","depth":2,"next":{"title":"Connection setup","level":"1.6.5.1","depth":3,"anchor":"#connection","path":"recipe-ops.md","ref":"recipe-ops.md#connection","articles":[]},"previous":{"title":"Common scenarios for rerunning jobs","level":"1.6.4.3","depth":3,"anchor":"#common-scenarios-for-rerunning-jobs","path":"recipes/rerun-job.md","ref":"recipes/rerun-job.md#common-scenarios-for-rerunning-jobs","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"recipe-ops.md","mtime":"2019-07-29T23:29:28.776Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-07-29T23:32:31.832Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
