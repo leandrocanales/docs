@@ -2883,6 +2883,21 @@
       
     </li>
   
+    <li class="chapter " data-level="1.16.5.6" data-path="handling-raw-content.html">
+      
+
+      
+        <a href="handling-raw-content.html">
+      
+        
+        Setting up callable recipes to handle raw content
+      
+        </a>
+      
+
+      
+    </li>
+  
 
         </ul>
       
@@ -3123,8 +3138,6 @@
   
     <li class="chapter " data-level="1.16.14" data-path="../../api-management.html">
       
-        <i class="fa fa-angle-right chapter__toggle"></i>
-      
 
       
         <a href="../../api-management.html">
@@ -3135,42 +3148,6 @@
         </a>
       
 
-      
-        <ul class="articles">
-          
-  
-    <li class="chapter " data-level="1.16.14.1" data-path="../../api-management.html">
-      
-
-      
-        <a href="../../api-management.html#api-tokens">
-      
-        
-        API tokens
-      
-        </a>
-      
-
-      
-    </li>
-  
-    <li class="chapter " data-level="1.16.14.2" data-path="../../api-management.html">
-      
-
-      
-        <a href="../../api-management.html#service-catalog-endpoints">
-      
-        
-        API endpoints
-      
-        </a>
-      
-
-      
-    </li>
-  
-
-        </ul>
       
     </li>
   
@@ -3807,7 +3784,7 @@
         <a href="../../api-management.html">
       
         
-        API Management
+        API Platform
       
         </a>
       
@@ -3899,7 +3876,22 @@
       
     </li>
   
-    <li class="chapter " data-level="1.19.5" data-path="../../api-mgmt/api-security.html">
+    <li class="chapter " data-level="1.19.5" data-path="handling-raw-content.html">
+      
+
+      
+        <a href="handling-raw-content.html">
+      
+        
+        Setting up endpoints to handle raw content
+      
+        </a>
+      
+
+      
+    </li>
+  
+    <li class="chapter " data-level="1.19.6" data-path="../../api-mgmt/api-security.html">
       
 
       
@@ -11051,7 +11043,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="callable-recipes---new-call-for-recipe-trigger">Callable Recipes - New call for recipe trigger</h1>
-<p>This trigger creates a job whenever it is called, in real-time. It can be called from <a href="call-recipe-action.html">another recipe</a> or from another system as a <a href="../../api-mgmt.md">API Platform REST endpoint</a>.</p>
+<p>This trigger creates a job whenever it is called, in real-time. It can be called from <a href="call-recipe-action.html">another recipe</a> or from another system as a <a href="../../api-management.html">API Platform REST endpoint</a>.</p>
 <blockquote>
 <p>API Platform must be enabled for your account before a callable recipe can be exposed as a REST endpoint. Check the <a href="https://www.workato.com/pricing?audience=general" target="_blank">Pricing and Plans</a> page to find out more.</p>
 </blockquote>
@@ -11089,71 +11081,78 @@
 </tbody>
 </table>
 <h3 id="output-fields">Output fields</h3>
+<p>Certain output fields are only available if the recipe is called as an API platform REST endpoint. More information can be found on the <a href="../../api-management.html">API platform</a> documentation.
+<!--
+| Default | Called as a REST endpoint | Output field | Description |
+| :-----: | :-----: | --- | --- |
+| &#9745; | &#9745; | Calling job ID | ID of the job in the parent recipe that made the call. |
+| &#9745; | &#9745; | Calling recipe ID | Id of the parent recipe that made the call. |
+| &#9746; | &#9745; | Calling IP address | IP address of the client calling this recipe as a REST endpoint. |
+| &#9746; | &#9745; | Access profile | Contains **ID**, **Name**, and **authentication method** of the access profile used to perform the request. |
+| &#9746; | &#9745; | API client | Contains **API client ID** and **API client name** used to perform the request. |
+| &#9746; | &#9745; | JWT claims | *Only available if a JWT token is used*.<br>Contains **Audience**, **JWT ID**, **Issuer**, and **Expiration time**, **Not before** and **Issued at** values of the JWT used to authenticate the request. |
+| &#9746; | Only if the request type is **Raw request body**| Content type | `Content-type` header from the incoming request. |
+| &#9746; | Only if the request type is **Raw request body**| Request body (raw) | Full raw request body. |
+| &#9745; | &#9745; | Recipe input | This will contain the datapills as defined in the response schema. |
+--></p>
 <table class="unchanged rich-diff-level-one">
   <thead>
     <tr>
-        <th colspan="2" width="40%">Input field</th>
+        <th colspan="3" width="40%">Output field</th>
         <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td rowspan="6">
-        Context<br>
-        <i>Only if this recipe is used as a <b>REST endpoint</b></i>
-      </td>
-      <td>Calling job ID</td>
+      <td colspan="3">Calling job ID</td>
       <td>ID of the job in the parent recipe that made the call.</td>
     </tr>
-    <tr>
-      <td>Calling recipe ID</td>
+      <td colspan="3">Calling recipe ID</td>
       <td>ID of the parent recipe that made the call.</td>
-    </tr>
+    
     <tr>
-      <td>Calling IP address</td>
+      <td rowspan="6">
+        <i>Only available if called as an API Platform <b>REST endpoint</b></i>
+      </td>
+      <td colspan="2">Calling IP address</td>
       <td>
-        <i>Only available if called through the API Platform.</i><br>
         IP address of the client calling this recipe as a REST endpoint.
       </td>
     </tr>
     <tr>
-      <td>Access profile</td>
+      <td colspan="2">Access profile</td>
       <td>
-        <i>Only available if called through the API Platform.</i><br>
         Contains <b>ID</b>, <b>name</b> and <b>authentication method</b> of the access profile used to perform the request.
       </td>
     </tr>
     <tr>
-      <td>API client</td>
+      <td colspan="2">API client</td>
       <td>
-        <i>Only available if called through the API Platform.</i><br>
         Contains <b>API client ID</b> and <b>API client name</b> values to perform the request.
       </td>
     </tr>
     <tr>
-      <td>JWT claims</td>
+      <td colspan="2">JWT claims</td>
       <td>
-        <i>Only available if called through the API Platform using a JWT token.</i><br>
+        <i>Only available a JWT token is used.</i><br>
         Contains <b>Audience</b>, <b>JWT ID</b>, <b>Issuer</b>, and <b>Expiration Time</b>, <b>Not before</b> and <b>Issued At</b> values of the JWT used to authenticate the request.
       </td>
     </tr>
     <tr>
-      <td rowspan="2">Request<br><i>only if request type is <b>Raw request body</b></i></td>
+      <td rowspan="2"><i>Only if request type is <b>Raw request body</b></i></td>
       <td>Content type</td>
       <td>
-        <i>Only available if called through the API Platform.</i><br>
         <code>Content-Type</code> header value from the incoming request.
       </td>
     </tr>
     <tr>
       <td>Request body (raw)</td>
       <td>
-        <i>Only available if called through the API Platform.</i><br>
         Full raw request body.
       </td>
     </tr>
     <tr>
-      <td colspan="2">Recipe input<br><i>only if request type is <b>Raw request body</b></i></td>
+      <td colspan="3">Recipe input</td>
       <td>This output object will contain all the fields defined in <b>Input schema<b>.</b></b></td>
     </tr>
   </tbody>
@@ -11240,7 +11239,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"New call for recipe trigger","date":"2017-04-05T14:00:00.000Z","search":{"keywords":["callable","new call"]},"level":"1.16.5.2","depth":3,"next":{"title":"Call recipe actions","level":"1.16.5.3","depth":3,"path":"features/callable-recipes/call-recipe-action.md","ref":"features/callable-recipes/call-recipe-action.md","articles":[]},"previous":{"title":"Walk-through","level":"1.16.5.1","depth":3,"path":"features/callable-recipes/walk-through.md","ref":"features/callable-recipes/walk-through.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"features/callable-recipes/new-call-trigger.md","mtime":"2019-07-30T05:20:03.101Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-07-30T05:23:55.942Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"New call for recipe trigger","date":"2017-04-05T14:00:00.000Z","search":{"keywords":["callable","new call"]},"level":"1.16.5.2","depth":3,"next":{"title":"Call recipe actions","level":"1.16.5.3","depth":3,"path":"features/callable-recipes/call-recipe-action.md","ref":"features/callable-recipes/call-recipe-action.md","articles":[]},"previous":{"title":"Walk-through","level":"1.16.5.1","depth":3,"path":"features/callable-recipes/walk-through.md","ref":"features/callable-recipes/walk-through.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"features/callable-recipes/new-call-trigger.md","mtime":"2019-07-30T07:59:00.749Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-07-30T08:00:50.227Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
