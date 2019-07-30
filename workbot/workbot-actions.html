@@ -3403,6 +3403,21 @@
       
     </li>
   
+    <li class="chapter " data-level="1.17.5.5" data-path="workbot-actions.html">
+      
+
+      
+        <a href="workbot-actions.html#upload-file/">
+      
+        
+        Upload file
+      
+        </a>
+      
+
+      
+    </li>
+  
 
         </ul>
       
@@ -11041,9 +11056,10 @@
 <ul>
 <li><a href="#post-command-reply">Post command reply</a></li>
 <li><a href="#post-notifications">Post notifications</a></li>
-<li><a href="#post-messages">Post messages</a></li>
+<li><a href="#post-message">Post message</a></li>
 <li><a href="#download-attachment">Download attachment</a></li>
 <li><a href="#return-menu-options">Return menu options</a></li>
+<li><a href="#upload-file">Upload file</a></li>
 </ul>
 <h2 id="post-command-reply">Post command reply</h2>
 <p>Post command reply allows you to customize how Workbot replies when an event is completed. This reply can be a simple message about the task completion, or a prompt for the user to take a subsequent action once the first has been done, e.g. after retrieving data for a custom account in Salesforce, ask if the user wishes to copy that information across to another application.</p>
@@ -11235,6 +11251,67 @@ Related commands are deprecated-->
 <em>Groups options look in recipe</em></p>
 <p><img src="../assets/images/workbot/workbot-actions/grouped-options.png" alt="Grouped options">
 <em>Grouped options in Slack</em></p>
+<h2 id="upload-file">Upload file</h2>
+<p>This action will upload a file to the specified channel, DM or thread. You can also include a simple message together with the file.</p>
+<p><img src="../assets/images/workbot/workbot-actions/upload-file-with-message.png" alt="Upload file with simple message">
+<em>A short message before the Chat history.json file</em></p>
+<p>The following table lists the fields available in an <strong>Upload file</strong> action.</p>
+<table class="unchanged rich-diff-level-one">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Explanation</th>
+            <th>What goes in here</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Channel name/DM</td>
+      <td>
+        Upload a file to a specified Slack channel or direct message (DM).
+        </td>
+      <td>
+        Use the <kbd>Channel/DM</kbd> datapill from a Post command trigger, or key in the channel name e.g. <b>#general</b> or username e.g. <b>@johndonahue</b>.<img src="../assets/images/workbot/workbot-actions/channel-dm.png">
+      </td>
+    </tr>
+    <tr>
+      <td>Initial comment</td>
+      <td>
+        Simple message to post together with the uploaded file.</td>
+        <td>Include a simple message to give more context to your file.<br><img src="../assets/images/workbot/workbot-actions/upload-file-with-message.png">
+      </td>
+    </tr>
+    <tr>
+      <td>File name</td>
+      <td>Name of your file.</td>
+      <td>Provide a name for your file, e.g. <b>chat_history.json</b>. This will be the name of the file when any user downloads it from Slack.</td>.
+    </tr>
+    <tr>
+      <td>File type</td>
+      <td>Type of file</td>
+      <td>Provide the file type of your file. For the full list of file types which Slack supports, see <a href="https://api.slack.com/types/file#file_types" target="_blank">here.</a></td>
+    </tr>
+    <tr>
+      <td>File content</td>
+      <td>Contents of the file</td>
+      <td>
+        Use a <kbd>Content</kbd> datapill from the output of preceding action or trigger, e.g. a File contents datapills from a Google Drive Download attachment action.<br><br><img src="../assets/images/workbot/workbot-actions/file-content-pill-example.png">
+      </td>
+    </tr>
+    <tr>
+      <td>Title</td>
+      <td>Display title of the file</td>
+      <td>Displays the title of the file. If left blank, the <b>File name</b> will be displayed instead.</td>
+    </tr>
+    <tr>
+      <td>Thread ID</td>
+      <td>Uploads the file within an existing thread</td>
+      <td>
+        Use the <kbd>Thread ID</kbd> datapill from the output datatree of a <b>Post message</b> or <b>Post command reply</b> to upload the file to an existing thread. <br><img src="../assets/images/workbot/workbot-actions/thread-id-example.png"><br>If no thread exists yet, use the <kbd>Message ID</kbd> datapill instead. This will create a new thread for the uploaded file.
+      </td>
+    </tr>
+    </tbody>
+</table>
 
                                 
                                 </section>
@@ -11317,7 +11394,7 @@ Related commands are deprecated-->
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Workbot actions","date":"2017-03-30T05:00:00.000Z","level":"1.17.5","depth":2,"next":{"title":"Post command reply","level":"1.17.5.1","depth":3,"anchor":"#post-command-reply","path":"workbot/workbot-actions.md","ref":"workbot/workbot-actions.md#post-command-reply","articles":[]},"previous":{"title":"New dynamic menu event","level":"1.17.4.4","depth":3,"anchor":"#new-dynamic-menu-event","path":"workbot/workbot-triggers.md","ref":"workbot/workbot-triggers.md#new-dynamic-menu-event","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"workbot/workbot-actions.md","mtime":"2019-07-30T01:01:33.113Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-07-30T01:04:56.670Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Workbot actions","date":"2017-03-30T05:00:00.000Z","level":"1.17.5","depth":2,"next":{"title":"Post command reply","level":"1.17.5.1","depth":3,"anchor":"#post-command-reply","path":"workbot/workbot-actions.md","ref":"workbot/workbot-actions.md#post-command-reply","articles":[]},"previous":{"title":"New dynamic menu event","level":"1.17.4.4","depth":3,"anchor":"#new-dynamic-menu-event","path":"workbot/workbot-triggers.md","ref":"workbot/workbot-triggers.md#new-dynamic-menu-event","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"workbot/workbot-actions.md","mtime":"2019-07-30T05:20:03.113Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-07-30T05:23:55.942Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
