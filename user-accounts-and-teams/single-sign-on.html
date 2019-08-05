@@ -11374,128 +11374,165 @@
 <h2 id="create-workato-application-on-your-saml-provider">Create Workato application on your SAML provider</h2>
 <p>These are the steps to enable SSO for <a href="#okta-single-sign-on">Okta</a> and <a href="#onelogin-single-sign-on">OneLogin</a>.</p>
 <h3 id="okta-single-sign-on">Okta Single sign on</h3>
-<ol>
-<li>Create a new SAML application in Okta admin interface.</li>
-</ol>
-<p><img src="../assets/images/user-accounts-and-teams/single-sign-on/add-application.png" alt="Add application on Okta">
-<em>Add application on Okta. Refer to the <a href="http://developer.okta.com/standards/SAML/setting_up_a_saml_application_in_okta" target="_blank">Okta documentation</a> for more details.</em></p>
-<ol>
-<li>Create a New Application integration.</li>
-</ol>
-<p><img src="../assets/images/user-accounts-and-teams/single-sign-on/create-application.png" alt="Create a new application on Okta">
-<em>Create a new application on Okta</em></p>
-<ol>
-<li>Fill in the General settings for this new SAML Application.</li>
-</ol>
-<p><img src="../assets/images/user-accounts-and-teams/single-sign-on/configure-general-settings.png" alt="Configure general settings">
-<em>Configure general settings</em></p>
-<ol>
-<li>Configure SAML settings.</li>
-</ol>
-<p><img src="../assets/images/user-accounts-and-teams/team-collaboration/okta-settings-config-mode.png" alt="Okta Config Wizard">
-<em>Okta Workato Service Provider settings in Wizard mode</em></p>
-<p>Fill the settings form as follows:</p>
 <table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Single Sign On URL</td>
-<td><code>https://www.workato.com/saml/init</code></td>
-</tr>
-<tr>
-<td>Use this for Recipient URL and Destination URL</td>
-<td>Enable checkmark</td>
-</tr>
-<tr>
-<td>Allow this app to request other SSO URLs</td>
-<td>Enable checkmark</td>
-</tr>
-<tr>
-<td>Requestable SSO URLs</td>
-<td><code>https://www.workato.com/saml/consume</code></td>
-</tr>
-<tr>
-<td>Audience URI (SP Entity ID)</td>
-<td><code>https://www.workato.com/saml/metadata</code></td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th width="20%">Steps</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1. Create new application</td>
+      <td>
+        Locate <b>Applications</b> &gt; <b>Add application</b>.<br>
+        <img src="../assets/images/user-accounts-and-teams/single-sign-on/add-application.png" alt="Add application on Okta"><br>
+        <i>Add application on Okta. Refer to the <a href="http://developer.okta.com/standards/SAML/setting_up_a_saml_application_in_okta" target="_blank">Okta documentation</a> for more details</i>
+      </td>
+    </tr>
+    <tr>
+      <td>2. Select <b>SAML 2.0</b></td>
+      <td>
+        <img src="../assets/images/user-accounts-and-teams/single-sign-on/create-application.png" alt="Create a new application on Okta"><br>
+        <i>Create a new application on Okta</i>
+      </td>
+    </tr>
+    <tr>
+      <td>3. Skip to <b>SAML settings</b></td>
+      <td>
+        <img src="../assets/images/user-accounts-and-teams/team-collaboration/okta-settings-config-mode.png" alt="Okta Config Wizard"><br>
+        <i>Workato Service Provider settings for Okta</i><br><br>
+        Fill in the settings form as follows:<br>
+        <table>
+          <thead>
+            <th>Field</th>
+            <th>Value</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Single Sign On URL</td>
+              <td><code>https://www.workato.com/saml/init</code></td>
+            </tr>
+            <tr>
+              <td>Use this for Recipient URL and Destination URL</td>
+              <td>Enable checkmark</td>
+            </tr>
+            <tr>
+              <td>Allow this app to request other SSO URLs</td>
+              <td>Enable checkmark</td>
+            </tr>
+            <tr>
+              <td>Requestable SSO URLs</td>
+              <td><code>https://www.workato.com/saml/consume</code></td>
+            </tr>
+            <tr>
+              <td>Audience URI (SP Entity ID)</td>
+              <td><code>https://www.workato.com/saml/metadata</code></td>
+            </tr><tr>
+          </tr></tbody>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>4. Select <b>Save</b> and <b>Create</b></td>
+      <td>
+        The final Okta settings screen should look like this:<br>
+        <img src="../assets/images/user-accounts-and-teams/team-collaboration/okta-settings-view-mode.png" alt="Okta Config View"><br>
+        <i>Workato Service Provider completed settings on Okta</i>
+      </td>
+    </tr>
+    <tr>
+      <td>5. Obtain Okta <b>Metadata URL</b></td>
+      <td>
+        Follow these steps to obtain the Okta Metadata URL:<br>
+        <ul>
+          <li>Locate the newly created Application&apos;s page</li>
+          <li>Locate the <b>Sign On tab</b></li>
+          <li>Right-click on <b>Identity Provider metadata</b> and <b>Copy link address</b></li>
+        </ul>
+        <img src="../assets/images/user-accounts-and-teams/single-sign-on/okta-metadata-link.gif" alt="Okta IdP URL"><br>
+        <i>Okta metadata URL</i>
+      </td>
+    </tr>
+  </tbody>
 </table>
-<ol>
-<li>Save and create this SAML application. The final Okta settings screen should look like this:</li>
-</ol>
-<p><img src="../assets/images/user-accounts-and-teams/team-collaboration/okta-settings-view-mode.png" alt="Okta Config View">
-<em>Workato Service Provider completed settings on Okta</em></p>
-<ol>
-<li><p>Obtain Okta metadata URL.</p>
-</li>
-<li><p>Locate the newly created Application&apos;s page</p>
-</li>
-<li>Locate the  <strong>Sign On tab</strong></li>
-<li>Right-click on <strong>Identity Provider metadata</strong> and <strong>Copy link address</strong></li>
-</ol>
-<p><img src="../assets/images/user-accounts-and-teams/single-sign-on/okta-metadata-link.gif" alt="Okta IdP URL">
-<em>Okta metadata URL</em></p>
+
 <h3 id="onelogin-single-sign-on">OneLogin Single Sign-On</h3>
-<ol>
-<li>Create a new SAML application in OneLogin admin interface. Find <strong>Apps</strong> &gt; <strong>Add App</strong> &gt; <strong>SAML Test Connector</strong>.</li>
-</ol>
-<p><img src="../assets/images/user-accounts-and-teams/single-sign-on/onelogin-add-application.png" alt="Add application on OneLogin">
-<em>Add application on OneLogin. Refer to the <a href="https://support.onelogin.com/hc/en-us/articles/202673944-How-to-Use-the-OneLogin-SAML-Test-Connector" target="_blank">OneLogin documentation</a> for more details.</em></p>
-<ol>
-<li>Fill in the basic configuration for this new application.</li>
-</ol>
-<p><img src="../assets/images/user-accounts-and-teams/single-sign-on/onelogin-basic-configuration.png" alt="Configure basic settings">
-<em>Configure basic settings</em></p>
-<ol>
-<li>Configure the SAML settings.</li>
-</ol>
-<p><img src="../assets/images/user-accounts-and-teams/team-collaboration/onelogin-settings.png" alt="Workato Service Provider settings for OneLogin">
-<em>Workato Service Provider settings for OneLogin</em></p>
-<p>Fill the settings form as follows:</p>
 <table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Audience</td>
-<td><code>https://www.workato.com/saml/metadata</code></td>
-</tr>
-<tr>
-<td>Recipient</td>
-<td><code>https://www.workato.com/saml/init</code></td>
-</tr>
-<tr>
-<td>ACS (Consumer) URL Validator</td>
-<td><code>^https:\/\/www.workato.com\/saml\/*$</code></td>
-</tr>
-<tr>
-<td>ACS (Consumer) URL</td>
-<td><code>https://www.workato.com/saml/consume</code></td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th width="20%">Steps</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1. Add application on OneLogin</td>
+      <td>
+        Locate <b>Appplications</b> &gt; <b>Add App</b>.<br>
+        <img src="../assets/images/user-accounts-and-teams/single-sign-on/onelogin-add-application.png" alt="Add application on OneLogin"><br>
+        <i>Add application on OneLogin. Refer to the <a href="https://support.onelogin.com/hc/en-us/articles/202673944-How-to-Use-the-OneLogin-SAML-Test-Connector" target="_blank">OneLogin documentation</a> for more details</i>
+      </td>
+    </tr>
+    <tr>
+      <td>2. Create a new SAML application</td>
+      <td>
+        Locate <b>Apps</b> &gt; <b>Add app</b> &gt; <b>SAML Test Connector</b>.<br>
+        <img src="../assets/images/user-accounts-and-teams/single-sign-on/onelogin-saml-test-connector.png" alt="SAML test connector"><br>
+        <i>SAML test connector</i>
+      </td>
+    </tr>
+    <tr>
+      <td>3. Skip to <b>Configuration settings</b></td>
+      <td>
+        <img src="../assets/images/user-accounts-and-teams/single-sign-on/onelogin-settings.png" alt="OneLogin Config Wizard"><br>
+        <i>Workato Service Provider settings for OneLogin</i><br><br>
+        Fill in the settings form as follows:<br>
+        <table>
+          <thead>
+            <th>Field</th>
+            <th>Value</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Audience</td>
+              <td><code>https://www.workato.com/saml/metadata</code></td>
+            </tr>
+            <tr>
+              <td>Recipient</td>
+              <td><code>https://www.workato.com/saml/init</code></td>
+            </tr>
+            <tr>
+              <td>ACS (Consumer) URL Validator</td>
+              <td><code>^https:\/\/www.workato.com\/saml\/*$</code></td>
+            </tr>
+            <tr>
+              <td>ACS (Consumer) URL</td>
+              <td><code>https://www.workato.com/saml/consume</code></td>
+            </tr><tr>
+          </tr></tbody>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>4. Obtain OneLogin <b>Metadata URL</b></td>
+      <td>
+        Follow these steps to obtain the OneLogin Metadata URL:<br>
+        <ul>
+          <li><b>Save</b> the OneLogin new application setup</li>
+          <li>Select <b>More Actions</b></li>
+          <li>Right-click on <b>SAML metadata</b> and <b>Copy link address</b></li>
+        </ul>
+        <img src="../assets/images/user-accounts-and-teams/single-sign-on/onelogin-metadata-link.gif" alt="OneLogin IdP URL"><br>
+        <i>OneLogin metadata URL</i>
+      </td>
+    </tr>
+  </tbody>
 </table>
-<ol>
-<li><p>Obtain OneLogin metadata URL.</p>
-</li>
-<li><p><strong>Save</strong> the OneLogin new application setup.</p>
-</li>
-<li>Select <strong>More actions</strong></li>
-<li>Right-click on <strong>SAML metadata</strong> and <strong>Copy link address</strong></li>
-</ol>
-<p><img src="../assets/images/user-accounts-and-teams/single-sign-on/onelogin-metadata-link.gif" alt="OneLogin IdP URL">
-<em>OneLogin metadata URL</em></p>
+
 <h2 id="workato-single-sign-on-setup">Workato Single Sign-on setup</h2>
-<p>After creating a new application on your SAML provider. Finish the SSO setup on Workato&apos;s Team <a href="https://www.workato.com/members#settings" target="_blank">setting page</a>.</p>
-<p>Once you have filled in the required fields, select <strong>Validate Settings</strong>. After validation has succeeded, select <strong>Save</strong>.</p>
+<p>After creating a new application on your SAML provider, finish the SSO setup on the Workato Team <a href="https://www.workato.com/members#settings" target="_blank">setting page</a>.</p>
+<p>Fill in the required fields and select <strong>Validate Settings</strong>. After validation has succeeded, select <strong>Save</strong>.</p>
 <p><img src="../assets/images/user-accounts-and-teams/single-sign-on/workato-okta-settings.png" alt="Workato SAML config">
 <em>Workato SAML Okta Configuration example</em></p>
 <table>
@@ -11556,7 +11593,7 @@
 <h2 id="logging-into-saml-enabled-team">Logging into SAML-enabled Team</h2>
 <p>Once SAML is enabled, access to Team is controlled by SAML Identity Provider (Okta, OneLogin, etc). Your team members can now access their Workato accounts from the SAML provider.</p>
 <ul>
-<li>Clicking on the Workato application on Okta will lead users to the Workato platform.</li>
+<li>From Okta, clicking on the Workato application will lead users to the Workato platform.</li>
 </ul>
 <p><img src="../assets/images/user-accounts-and-teams/single-sign-on/employee-workato-app.png" alt="Workato app on Okta">
 <em>Workato app on Okta</em></p>
@@ -11647,7 +11684,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Single sign on","date":"2019-08-02T18:00:00.000Z","level":"1.12.3","depth":2,"next":{"title":"Okta SSO","level":"1.12.3.1","depth":3,"anchor":"#okta-single-sign-on","path":"user-accounts-and-teams/single-sign-on.md","ref":"user-accounts-and-teams/single-sign-on.md#okta-single-sign-on","articles":[]},"previous":{"title":"Tracking changes from team collaborators","level":"1.12.2","depth":2,"anchor":"#tracking-changes-made-by-collaborators","path":"user-accounts-and-teams/team-collaboration.md","ref":"user-accounts-and-teams/team-collaboration.md#tracking-changes-made-by-collaborators","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"user-accounts-and-teams/single-sign-on.md","mtime":"2019-08-02T12:16:29.091Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-08-02T12:17:51.572Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Single sign on","date":"2019-08-02T18:00:00.000Z","level":"1.12.3","depth":2,"next":{"title":"Okta SSO","level":"1.12.3.1","depth":3,"anchor":"#okta-single-sign-on","path":"user-accounts-and-teams/single-sign-on.md","ref":"user-accounts-and-teams/single-sign-on.md#okta-single-sign-on","articles":[]},"previous":{"title":"Tracking changes from team collaborators","level":"1.12.2","depth":2,"anchor":"#tracking-changes-made-by-collaborators","path":"user-accounts-and-teams/team-collaboration.md","ref":"user-accounts-and-teams/team-collaboration.md#tracking-changes-made-by-collaborators","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"user-accounts-and-teams/single-sign-on.md","mtime":"2019-08-05T10:17:19.535Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-08-05T10:19:33.416Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
