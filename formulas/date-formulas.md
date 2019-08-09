@@ -65,7 +65,7 @@ In the following example, Workato carries out the action on on 2 April 2017, 12.
 ---
 
 ## wday
-Returns day of the week (numbering starts with Monday = 1)
+Returns day of the week (numbering starts with Sunday = 0)
 
 ### Example
 
